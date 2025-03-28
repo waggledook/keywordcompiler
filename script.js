@@ -36,6 +36,8 @@ function normalizeContractions(text) {
   text = text.replace(/\bdidn't\b/gi, "did not");
   text = text.replace(/\bwasn't\b/gi, "was not");
   text = text.replace(/\bweren't\b/gi, "were not");
+  text = text.replace(/\b(\w+)'d(?=\s+\w+(ed|en)\b)/gi, "$1 had");
+  text = text.replace(/\b(\w+)'d\b/gi, "$1 would");
   // Ambiguous "'s" will be uniformly expanded to "is" (e.g., "Mark's" becomes "mark is")
   text = text.replace(/\b(\w+)'s\b/gi, "$1 is");
   return text;
@@ -80,40 +82,38 @@ class KeywordTransformationGame {
 initFilterUI() {
   document.body.innerHTML = `
     <style>
-      /* Overall body styling */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
       body {
         font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #2E3192, #1BFFFF);
         color: white;
         text-align: center;
-        margin: 0;
-        padding: 20px;
+        
+        /* Force the gradient to fill the entire viewport */
+        background: linear-gradient(135deg, #2E3192, #1BFFFF) no-repeat center center fixed;
+        background-size: cover;
       }
-
-      /* Container for the filter area */
       #filter-container {
         max-width: 600px;
         margin: auto;
         background: rgba(0,0,0,0.8);
         padding: 30px 20px;
         border-radius: 10px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* subtle box shadow */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        margin-top: 5%; /* push the container down a bit */
       }
-
-      /* Main title */
       #filter-container h1 {
         margin-bottom: 20px;
         font-size: 2em;
         text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
       }
-
-      /* Labels/paragraphs inside the container */
       #filter-container p {
         margin: 10px 0 5px;
         font-weight: 600;
       }
-
-      /* Styling for <select> elements */
       #filter-container select {
         padding: 10px;
         font-size: 16px;
@@ -127,10 +127,8 @@ initFilterUI() {
       }
       #filter-container select:focus {
         outline: none;
-        box-shadow: 0 0 6px #FFD700; /* highlight color */
+        box-shadow: 0 0 6px #FFD700;
       }
-
-      /* Buttons */
       #filter-container button {
         padding: 12px 24px;
         font-size: 16px;
@@ -148,28 +146,6 @@ initFilterUI() {
       }
       #filter-container button:active {
         transform: translateY(1px);
-      }
-
-      /* Optional: fine-tune your highlight class or other feedback classes */
-      .highlight {
-        font-weight: bold;
-        color: #FFD700;
-      }
-      .submitted-correct {
-        background-color: #d4edda;
-        color: #155724;
-      }
-      .submitted-incorrect {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
-      .correct-feedback {
-        font-weight: bold;
-        color: green;
-      }
-      .incorrect-feedback {
-        font-weight: bold;
-        color: red;
       }
     </style>
     <div id="filter-container">
@@ -189,11 +165,12 @@ initFilterUI() {
       <button id="startGameBtn">Start Game</button>
     </div>
   `;
-
+  
   document.getElementById("levelSelect").addEventListener("change", () => this.updateTagOptions());
   document.getElementById("startGameBtn").addEventListener("click", () => this.startGame());
   this.updateTagOptions();
 }
+
 
 
 
@@ -556,61 +533,102 @@ reviewMistakes() {
   
   // Render the review UI. (We include a "Back" button to return to the main UI and the Download Report button.)
   document.body.innerHTML = `
-    <style>
-      /* Use the same styles as your main UI */
-      body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #2E3192, #1BFFFF);
-        color: white;
-        text-align: center;
-        margin: 0;
-        padding: 20px;
-      }
-      #review-container {
-        max-width: 600px;
-        margin: auto;
-        background: rgba(0,0,0,0.8);
-        padding: 20px;
-        border-radius: 10px;
-      }
-      input, button {
-        padding: 10px;
-        font-size: 16px;
-        margin: 10px;
-        border-radius: 5px;
-        border: none;
-      }
-      input[type="text"] {
-        width: 80%;
-      }
-      .highlight {
-        font-weight: bold;
-        color: #FFD700;
-      }
-      .submitted-correct {
-        background-color: #d4edda;
-        color: #155724;
-      }
-      .submitted-incorrect {
-        background-color: #f8d7da;
-        color: #721c24;
-      }
-      .correct-feedback {
-        font-weight: bold;
-        color: green;
-      }
-      .incorrect-feedback {
-        font-weight: bold;
-        color: red;
-      }
-    </style>
-    <div id="review-container">
-      <h1>Review Mistakes</h1>
-      ${reviewHTML}
-      <button id="backToMain">Back</button>
-      <button id="downloadReport">Download Report</button>
-    </div>
-  `;
+  <style>
+    /* Reuse the same button styles as the game UI */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #2E3192, #1BFFFF);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    #review-container {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0,0,0,0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="text"] {
+      width: 80%;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #FFD700;
+    }
+    .submitted-correct {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .submitted-incorrect {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    .correct-feedback {
+      font-weight: bold;
+      color: green;
+    }
+    .incorrect-feedback {
+      font-weight: bold;
+      color: red;
+    }
+    /* Download Report button (if present) */
+    #downloadReport {
+      background: linear-gradient(135deg, #FFA500, #FFD700);
+      color: #000;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    #downloadReport:hover {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      transform: translateY(-2px);
+    }
+    #downloadReport:active {
+      transform: translateY(1px);
+    }
+    /* Review screen submit buttons */
+    #backToMain, #downloadReport {
+      /* You might want to ensure these buttons also follow the same style */
+      background: linear-gradient(135deg, #32CD32, #228B22);
+      color: #fff;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    #backToMain:hover, #downloadReport:hover {
+      background: linear-gradient(135deg, #228B22, #32CD32);
+      transform: translateY(-2px);
+    }
+    #backToMain:active, #downloadReport:active {
+      transform: translateY(1px);
+    }
+    /* And the challenge submit buttons in the review screen */
+    .challenge button {
+      background: linear-gradient(135deg, #80cbc4, #4db6ac); /* same softer teal tones */
+      color: #000;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .challenge button:hover {
+      background: linear-gradient(135deg, #4db6ac, #80cbc4);
+      transform: translateY(-2px);
+    }
+    .challenge button:active {
+      transform: translateY(1px);
+    }
+  </style>
+  <div id="review-container">
+    <h1>Review Mistakes</h1>
+    ${reviewHTML}
+    <button id="backToMain">Back</button>
+    <button id="downloadReport">Download Report</button>
+  </div>
+`;
   
   // Attach event listeners for each review challenge's submit button using a separate check method.
   mistakes.forEach((challenge, index) => {
@@ -1130,7 +1148,7 @@ const transformations = [
     keyWord: "rather",
     fullSentence: "Simone says she prefers to cook dinner by herself.",
     gapFill: "Simone says that _______________________ cook dinner with anyone else.",
-    answer: "she would rather not",
+    answer: ["she would rather not","she'd rather not"],
     tags: "C1, modal verbs, formal, gerunds and infinitives"
   },
   {
@@ -1499,7 +1517,7 @@ const transformations = [
   },
   {
     keyWord: "spent",
-    fullSentence: "It took Jules ten minutes to find for her sunglasses.",
+    fullSentence: "It took Jules ten minutes to find her sunglasses.",
     gapFill: "Jules _______________________ for her sunglasses.",
     answer: ["spent ten minutes looking", "spent ten minutes searching"],
     tags: "C1, verb patterns, gerunds and infinitives"
