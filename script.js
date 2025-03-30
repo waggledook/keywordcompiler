@@ -17,6 +17,7 @@ function normalizeContractions(text) {
   text = text.replace(/\bcan't\b/gi, "cannot");
   text = text.replace(/\bwon't\b/gi, "will not");
   text = text.replace(/\bdon't\b/gi, "do not");
+  text = text.replace(/\bdoesn't\b/gi, "does not");
   text = text.replace(/\bi'm\b/gi, "i am");
   text = text.replace(/\byou're\b/gi, "you are");
   text = text.replace(/\bit's\b/gi, "it is");
@@ -1549,6 +1550,218 @@ const transformations = [
     gapFill: "Layla had _______________________ her manager to approve the leave.",
     answer: ["great difficulty in convincing", "great difficulty convincing", "great difficulty in persuading", "great difficulty persuading"],
     tags: "C1, gerunds and infinitives, noun phrases"
+  },
+  {
+    keyWord: "fact",
+    gapFill: "Americans still eat fast food despite _______________________ unhealthy.",
+    fullSentence: "Americans continue to eat fast food even though it’s unhealthy.",
+    answer: ["the fact it is", "the fact that it is"],
+    tags: "B2, linking, contrast, concession"
+  },
+  {
+    keyWord: "there",
+    gapFill: "The tomatoes would have ripened earlier last year _______________________ more sunshine.",
+    fullSentence: "The tomatoes would have ripened earlier if the weather had been sunnier.",
+    answer: ["if there had been"],
+    tags: "B2, conditionals, past perfect"
+  },
+  {
+    keyWord: "said",
+    gapFill: "The new restaurant _______________________ excellent.",
+    fullSentence: "They say the new restaurant is excellent.",
+    answer: ["is said to be"],
+    tags: "B2, passive voice, reported speech"
+  },
+  {
+    keyWord: "used",
+    gapFill: "It’s taken me a few months _______________________ in this company.",
+    fullSentence: "I’ve worked here for a few months and I’m only just beginning to feel comfortable.",
+    answer: ["to get used to working", "to get used to being"],
+    tags: "B2, verb patterns, used to"
+  },
+  {
+    keyWord: "refused",
+    gapFill: "Ali _______________________ sorry and stormed out of the room.",
+    fullSentence: "Ali said he would not apologise and stormed out of the room.",
+    answer: ["refused to say"],
+    tags: "B2, reporting verbs, gerunds and infinitives"
+  },
+  {
+    keyWord: "ought",
+    gapFill: "In my view, _______________________ to a wedding wearing jeans.",
+    fullSentence: "In my view, wearing jeans to a wedding is inappropriate.",
+    answer: ["you ought not to go"],
+    tags: "B2, modal verbs, advice"
+  },
+  {
+    keyWord: "whose",
+    gapFill: "Emily found a bracelet in her bag but had no _______________________ be.",
+    fullSentence: "Emily found a bracelet in her bag but had no idea who it belonged to.",
+    answer: [
+      "idea whose it might",
+      "idea whose it could",
+      "idea whose bracelet it might",
+      "idea whose bracelet it could"
+    ],
+    tags: "B2, relative clauses, indirect questions"
+  },
+  {
+    keyWord: "only",
+    gapFill: "That wooden chair was the _______________________ broken.",
+    fullSentence: "All the chairs were broken except that wooden one.",
+    answer: [
+      "only one not to be",
+      "only one to not be",
+      "only one not to get",
+      "only one to not get"
+    ],
+    tags: "B2, emphasis, passive voice"
+  },
+  {
+    keyWord: "been",
+    gapFill: "Lara felt hurt because she _______________________ to the picnic.",
+    fullSentence: "Lara felt hurt because nobody had invited her to the picnic.",
+    answer: ["had not been invited"],
+    tags: "B2, passive voice, past perfect"
+  },
+  {
+    keyWord: "far",
+    gapFill: "Doctors _______________________ social workers.",
+    fullSentence: "Social workers don't earn nearly as much as doctors.",
+    answer: [
+      "earn far more than",
+      "earn far more money than",
+      "get far more than",
+      "get far more money than"
+    ],
+    tags: "B2, comparatives, quantifiers"
+  },
+  {
+    keyWord: "feel",
+    gapFill: "Tania _______________________ going to the cinema tonight.",
+    fullSentence: "Tania doesn’t want to go to the cinema tonight.",
+    answer: ["does not feel like"],
+    tags: "B2, phrasal verbs, verb patterns, gerunds and infinitives"
+  },
+  {
+    keyWord: "turned",
+    gapFill: "The book _______________________ really moving.",
+    fullSentence: "I didn’t expect the book to be so moving.",
+    answer: ["turned out to be"],
+    tags: "B2, phrasal verbs, gerunds and infinitives"
+  },
+  {
+    keyWord: "succeeded",
+    gapFill: "Despite the _______________________ completing the hike.",
+    fullSentence: "They completed the hike even though it rained all day.",
+    answer: ["rain they succeeded in"],
+    tags: "B2, linking, contrast, concession, ability"
+  },
+  {
+    keyWord: "choice",
+    gapFill: "There _______________________ over forty different dishes on our menu.",
+    fullSentence: "Our hotel menu includes more than forty different dishes.",
+    answer: ["is a choice of"],
+    tags: "B2, noun phrases, prepositions"
+  },
+  {
+    keyWord: "doubted",
+    gapFill: "The engineers announced that they _______________________ solve traffic problems.",
+    fullSentence: "'We don't believe that more roads will solve traffic problems,' said the engineers.",
+    answer: [
+      "doubted that more roads would",
+      "doubted that more roads will",
+      "doubted if more roads would",
+      "doubted if more roads will",
+      "doubted whether more roads would",
+      "doubted whether more roads will"
+    ],
+    tags: "B2, reporting verbs, future"
+  },
+  {
+    keyWord: "intention",
+    gapFill: "'I have _______________________ the country this year,' said Mr Riley.",
+    fullSentence: "'I'm definitely not leaving the country this year,' said Mr Riley.",
+    answer: ["no intention of leaving"],
+    tags: "B2, fixed phrase, noun phrases, formal"
+  },
+  {
+    keyWord: "mistake",
+    gapFill: "'I may _______________________ about the time of the interview,' said Zoe.",
+    fullSentence: "'Maybe I was wrong about the time of the interview,' said Zoe.",
+    answer: ["have made a mistake"],
+    tags: "B2, modal verbs, deduction, past modals"
+  },
+  {
+    keyWord: "point",
+    gapFill: "There is _______________________ to the party now.",
+    fullSentence: "It’s too late now to go to the party.",
+    answer: [
+      "little point in going",
+      "no point in going",
+      "Little point going",
+      "No point going",
+      "Is not any point going"
+    ],
+    tags: "B2, fixed phrases, noun phrases, prepositions"
+  },
+  {
+    keyWord: "long",
+    gapFill: "Sam said I could borrow his camera _______________________ to look after it.",
+    fullSentence: "Sam said, 'You can borrow my camera, if you agree to look after it.'",
+    answer: ["as long as I promised", "so long as I promised"],
+    tags: "B2, conditionals, reported speech"
+  },
+  {
+    keyWord: "much",
+    gapFill: "Yoga _______________________ now than ten years ago.",
+    fullSentence: "The popularity of yoga has grown over the past ten years.",
+    answer: ["is much more popular"],
+    tags: "B2, comparatives"
+  },
+  {
+    keyWord: "give",
+    gapFill: "My uncle's decision _______________________ is a smart one.",
+    fullSentence: "My uncle has decided not to smoke anymore, which is a smart choice.",
+    answer: ["to give up smoking"],
+    tags: "B2, verb patterns, gerunds and infinitives, phrasal verbs"
+  },
+  {
+    keyWord: "were",
+    gapFill: "Hardly _______________________ by my students this term.",
+    fullSentence: "My students did very few writings this term",
+    answer: [
+      "any writings were done"],
+    tags: "B2, passive voice, quantifiers"
+  },
+  {
+    keyWord: "attention",
+    gapFill: "I didn’t pay _______________________ Ben was acting.",
+    fullSentence: "I ignored how Ben was acting during the meeting.",
+    answer: [
+      "any attention to how",
+      "any attention to the way",
+      "Attention to how",
+      "Attention to the way"
+    ],
+    tags: "B2, fixed phrases, prepositions"
+  },
+  {
+    keyWord: "used",
+    gapFill: "Sophie still has not _______________________ emails in English at work.",
+    fullSentence: "Sophie still finds it odd to write emails in English at work.",
+    answer: ["got used to writing", "got used to sending"],
+    tags: "B2, verb patterns, used to, prepositions"
+  },
+  {
+    keyWord: "could",
+    gapFill: "Maria asked the assistant _______________________ on that jumper.",
+    fullSentence: "‘Can my son try this jumper on?’ asked Maria.",
+    answer: [
+      "if her son could try",
+      "whether her son could try"
+    ],
+    tags: "B2, indirect questions, reported speech"
   }
 ];
 
