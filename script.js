@@ -1762,6 +1762,230 @@ const transformations = [
       "whether her son could try"
     ],
     tags: "B2, indirect questions, reported speech"
+  },
+  {
+    keyWord: "warned",
+    gapFill: "The optician _______________________________________ too close to the TV screen for a long time.",
+    fullSentence: "‘Don't sit too close to the TV screen for a long time,’ the optician told us.",
+    answer: ["warned us not to sit"],
+    tags: "B2, reported speech, reporting verbs, gerunds and infinitives"
+  },
+  {
+    keyWord: "way",
+    gapFill: "We couldn't _______________________________________ from the museum.",
+    fullSentence: "We got lost trying to get back from the museum.",
+    answer: ["find the way home", "find our way home"],
+    tags: "B2, fixed phrase"
+  },
+  {
+    keyWord: "difficulty",
+    gapFill: "Tom had _______________________________________ his final exam.",
+    fullSentence: "Tom passed his final exam easily.",
+    answer: ["no difficulty passing", "little difficulty in passing", "no difficulty in passing", "little difficulty passing"],
+    tags: "B2, fixed phrase, noun phrases, gerunds and infinitives"
+  },
+  {
+    keyWord: "somebody",
+    gapFill: "David _______________________________________ advice I always rely on.",
+    fullSentence: "I always rely on David’s advice.",
+    answer: ["is somebody whose", "is someone whose"],
+    tags: "B2, relative clauses"
+  },
+  {
+    keyWord: "as",
+    gapFill: "It _______________________________________ we've gone to the wrong train platform.",
+    fullSentence: "We appear to have gone to the wrong train platform.",
+    answer: ["seems as if", "appears as if", "looks as though", "looks as if", "seems as though", "appears as though"],
+    tags: "B2, linking, speculation"
+  },
+  {
+    keyWord: "sense",
+    gapFill: "The explanation for the maths problem didn’t _______________________________________ me.",
+    fullSentence: "I didn’t understand the explanation for the maths problem.",
+    answer: ["make any sense to", "make much sense to", "make sense to"],
+    tags: "B2, fixed phrase, quantifiers"
+  },
+  {
+    keyWord: "could",
+    gapFill: "I wish that we _______________________________________ more when we lived abroad.",
+    fullSentence: "It's a shame we didn’t travel more when we lived abroad.",
+    answer: ["could have travelled", "could have done"],
+    tags: "B2, unreal forms, modal verbs, past modals"
+  },
+  {
+    keyWord: "detailed",
+    gapFill: "She _______________________________________ of the apartment.",
+    fullSentence: "She described the apartment to us in detail.",
+    answer: ["gave us a detailed description"],
+    tags: "B2, noun phrases, formal"
+  },
+  {
+    keyWord: "too",
+    gapFill: "The instructions were _______________________________________ the students to follow.",
+    fullSentence: "The instructions were so tricky that none of the students could follow them.",
+    answer: ["too complicated for", "too tricky for"],
+    tags: "B2, quantifiers, prepositions"
+  },
+  {
+    keyWord: "mean",
+    gapFill: "Sandra _______________________________________ break the window.",
+    fullSentence: "Sandra broke the window by mistake.",
+    answer: ["did not mean to"],
+    tags: "B2, verb patterns, past simple, gerunds and infinitives"
+  },
+  {
+    keyWord: "arrangements",
+    gapFill: "Lena has already _______________________________________ her next trip to Italy.",
+    fullSentence: "Lena has already planned her next trip to Italy.",
+    answer: ["made arrangements for", "made the arrangements for"],
+    tags: "B2, fixed phrase, noun phrases, prepositions"
+  },
+  {
+    keyWord: "said",
+    gapFill: "The forests in this region _______________________________________ disappearing.",
+    fullSentence: "They say the forests in this region are disappearing.",
+    answer: ["are said to be"],
+    tags: "B2, passive voice, reporting"
+  },
+  {
+    keyWord: "prevented",
+    gapFill: "The rain _______________________________________ our meal outside.",
+    fullSentence: "We didn’t enjoy our meal outside because it started to rain.",
+    answer: ["prevented us from enjoying"],
+    tags: "B2, gerunds and infinitives, verb patterns, prepositions"
+  },
+  {
+    keyWord: "seems",
+    gapFill: "Luca _______________________________________ his wallet at home.",
+    fullSentence: "It looks like Luca has left his wallet at home.",
+    answer: ["seems to have left"],
+    tags: "B2, perfect, speculation"
+  },
+  {
+    keyWord: "had",
+    gapFill: "Mr Silva _______________________________________ by a trainee dentist.",
+    fullSentence: "A trainee dentist took out Mr Silva’s tooth.",
+    answer: ["had his tooth taken out", "had his tooth extracted", "had a tooth taken out", "had a tooth extracted"],
+    tags: "B2, causative, passive voice"
+  },
+  {
+    keyWord: "not",
+    gapFill: "If Ben had _______________________________________ passed the test.",
+    fullSentence: "Ben only failed the test because he overslept.",
+    answer: ["not overslept he would have"],
+    tags: "B2, conditionals, past perfect"
+  },
+  {
+    keyWord: "off",
+    gapFill: "The trip to the castle _______________________________________manager until after the inspection.",
+    fullSentence: "The manager postponed the excursion until after the inspection.",
+    answer: ["was put off by the"],
+    tags: "B2, phrasal verbs, passive voice"
+  },
+  {
+    keyWord: "wide",
+    gapFill: "Liam asked his dad _______________________________________ was.",
+    fullSentence: "‘Can you tell me how wide this sofa is?’ Liam asked his dad.",
+    answer: ["how wide the sofa"],
+    tags: "B2, indirect questions, questions"
+  },
+  {
+    keyWord: "took",
+    gapFill: "It _______________________________________ out her files.",
+    fullSentence: "Ella spent ages sorting out her files.",
+    answer: ["took Ella ages to sort"],
+    tags: "B2, causality, emphasis"
+  },
+  {
+    keyWord: "had",
+    gapFill: "Professor Klein _______________________________________ by an architect.",
+    fullSentence: "An architect designed the building for Professor Klein.",
+    answer: ["had the building designed"],
+    tags: "B2, causative have, passive"
+  },
+  {
+    keyWord: "accused",
+    gapFill: "Luca’s neighbour _______________________________________ the window.",
+    fullSentence: "'Luca, you broke the window!' shouted his neighbour.",
+    answer: ["accused him of breaking", "accused him of having broken"],
+    tags: "B2, reporting, gerunds"
+  },
+  {
+    keyWord: "paying",
+    gapFill: "If Freya  _______________________________________ to where she was going, she wouldn’t have fallen.",
+    fullSentence: "Freya fell down the stairs because she wasn’t watching where she was going.",
+    answer: ["had been paying attention", "had been paying any attention"],
+    tags: "B2, conditionals, fixed phrase"
+  },
+  {
+    keyWord: "could",
+    gapFill: "It _______________________________________ us to find accommodation at short notice.",
+    fullSentence: "It might not be easy for us to find accommodation at short notice.",
+    answer: ["could be difficult for", "could be hard for", " could be tricky for", "could be tough for"],
+    tags: "B2, speculation, modal verbs, prepositions"
+  },
+  {
+    keyWord: "ought",
+    gapFill: "You _______________________________________ me before borrowing my shoes.",
+    fullSentence: "You should have asked me before borrowing my shoes.",
+    answer: ["ought to have asked"],
+    tags: "B2, modal verbs, past modals"
+  },
+  {
+    keyWord: "because",
+    gapFill: "Several flights were cancelled _______________________________________ so heavy.",
+    fullSentence: "Several flights were cancelled as a result of the heavy fog.",
+    answer: ["because the fog was"],
+    tags: "B2, linking, causality"
+  },
+  {
+    keyWord: "heard",
+    gapFill: "I _______________________________________ Clara for six months.",
+    fullSentence: "I last got a message from Clara six months ago.",
+    answer: ["have not heard from"],
+    tags: "B2, present perfect, verb forms"
+  },
+  {
+    keyWord: "advisable",
+    gapFill: "It’s _______________________________________ tickets through that website.",
+    fullSentence: "I don’t recommend booking tickets through that website.",
+    answer: ["not advisable to book"],
+    tags: "B2, formal, gerunds and infinitives"
+  },
+  {
+    keyWord: "set",
+    gapFill: "The travel agency _______________________________________ Lara’s aunt in 1988.",
+    fullSentence: "Lara’s aunt founded the travel agency in 1988.",
+    answer: ["was set up by"],
+    tags: "B2, phrasal verbs, passive"
+  },
+  {
+    keyWord: "rise",
+    gapFill: "There _______________________________________ in the number of people working from home in the last two years.",
+    fullSentence: "The number of people working from home has gone up in the last two years.",
+    answer: ["has been a rise"],
+    tags: "B2, noun phrases, trends"
+  },
+  {
+    keyWord: "discuss",
+    gapFill: "Jacob promised never _______________________________________ again.",
+    fullSentence: "Jacob said he would never mention the incident again.",
+    answer: ["to discuss the incident"],
+    tags: "B2, reported speech, gerunds and infinitives, verb patterns"
+  },
+  {
+    keyWord: "never",
+    gapFill: "'I've _______________________________________ Airbnb than this,' said Jordan.",
+    fullSentence: "'This is the nicest Airbnb I've ever stayed in,' said Jordan.",
+    answer: ["never stayed in a nicer", "never stayed in a better"],
+    tags: "B2, comparatives, present perfect"
+  },
+  {
+    keyWord: "came",
+    gapFill: "Hardly _______________________________________ the poetry reading on Monday.",
+    fullSentence: "There were very few people at the poetry reading on Monday.",
+    answer: ["anyone came to", "anybody came to"],
+    tags: "B2, quantifiers, past simple"
   }
 ];
 
