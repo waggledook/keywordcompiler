@@ -1709,7 +1709,7 @@ const transformations = [
     keyWord: "long",
     gapFill: "Sam said I could borrow his camera _______________________ to look after it.",
     fullSentence: "Sam said, 'You can borrow my camera, if you agree to look after it.'",
-    answer: ["as long as I promised", "so long as I promised"],
+    answer: ["as long as I agreed", "so long as I agreed", "as long I promised", "so long as I promised"],
     tags: "B2, conditionals, reported speech"
   },
   {
@@ -1877,7 +1877,7 @@ const transformations = [
   },
   {
     keyWord: "off",
-    gapFill: "The trip to the castle _______________________________________manager until after the inspection.",
+    gapFill: "The trip to the castle _______________________________________ manager until after the inspection.",
     fullSentence: "The manager postponed the excursion until after the inspection.",
     answer: ["was put off by the"],
     tags: "B2, phrasal verbs, passive voice"
@@ -1901,14 +1901,14 @@ const transformations = [
     gapFill: "Professor Klein _______________________________________ by an architect.",
     fullSentence: "An architect designed the building for Professor Klein.",
     answer: ["had the building designed"],
-    tags: "B2, causative have, passive"
+    tags: "B2, causative have, passive, causative"
   },
   {
     keyWord: "accused",
     gapFill: "Luca’s neighbour _______________________________________ the window.",
     fullSentence: "'Luca, you broke the window!' shouted his neighbour.",
     answer: ["accused him of breaking", "accused him of having broken"],
-    tags: "B2, reporting, gerunds"
+    tags: "B2, reporting, gerunds and infinitives"
   },
   {
     keyWord: "paying",
@@ -2004,8 +2004,8 @@ const transformations = [
   {
     keyWord: "does",
     fullSentence: "If Josh doesn’t study more, he won’t pass the final exam.",
-    gapFill: "Josh won’t pass the final exam ____________________________ more studying.",
-    answer: ["unless he does"],
+    gapFill: "Josh won’t pass the final exam ____________________________ studying.",
+    answer: ["unless he does more"],
     tags: "B2, conditionals, verb forms"
   },
   {
