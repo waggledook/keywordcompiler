@@ -1986,6 +1986,234 @@ const transformations = [
     fullSentence: "There were very few people at the poetry reading on Monday.",
     answer: ["anyone came to", "anybody came to"],
     tags: "B2, quantifiers, past simple"
+  },
+  {
+    keyWord: "until",
+    fullSentence: "We had to complete the report before we could leave the office.",
+    gapFill: "We had to stay in the office ____________________________ the report.",
+    answer: ["until we had completed", "until we completed"],
+    tags: "B2, linking, past perfect"
+  },
+  {
+    keyWord: "better",
+    fullSentence: "Ella hadn’t expected the exhibition to be so interesting.",
+    gapFill: "The exhibition ____________________________ Ella had expected.",
+    answer: ["was better than"],
+    tags: "B2, comparatives"
+  },
+  {
+    keyWord: "does",
+    fullSentence: "If Josh doesn’t study more, he won’t pass the final exam.",
+    gapFill: "Josh won’t pass the final exam ____________________________ more studying.",
+    answer: ["unless he does"],
+    tags: "B2, conditionals, verb forms"
+  },
+  {
+    keyWord: "what",
+    fullSentence: "“Do you know what the problem is, Alex?” asked Priya.",
+    gapFill: "Priya asked Alex ____________________________.",
+    answer: ["what the problem was"],
+    tags: "B2, indirect questions, reported speech"
+  },
+  {
+    keyWord: "put",
+    fullSentence: "The school decided to advertise the vacancy online.",
+    gapFill: "The school decided to ____________________________ the vacancy online.",
+    answer: ["put an advertisement for", "put an ad for", "put an advert for"],
+    tags: "B2, fixed phrase"
+  },
+  {
+    keyWord: "finished",
+    fullSentence: "At the end of her presentation, the student congratulated her teacher.",
+    gapFill: "The student ____________________________ her teacher.",
+    answer: ["finished her presentation by congratulating"],
+    tags: "B2, gerunds and infinitives, verb patterns"
+  },
+  {
+    keyWord: "month",
+    fullSentence: "I sent off my university application a month ago.",
+    gapFill: "It ____________________________ I sent off my university application.",
+    answer: ["has been a month since", "is a month since", "'s a month since", "'s been a month since"],
+    tags: "B2, present perfect, time expressions"
+  },
+  {
+    keyWord: "following",
+    fullSentence: "The band received loads of fan mail after they had appeared on TV.",
+    gapFill: "The band received loads of fan mail ____________________________ on TV.",
+    answer: ["following their appearance"],
+    tags: "B2, noun phrases, prepositions"
+  },
+  {
+    keyWord: "like",
+    fullSentence: "Mia is interested in learning more about photography.",
+    gapFill: "Mia would ____________________________ more about photography.",
+    answer: ["like to learn", "like to know"],
+    tags: "B2, verb patterns, gerunds and infinitives"
+  },
+  {
+    keyWord: "let",
+    fullSentence: "Because of the roadworks, the police didn’t allow us to drive through the tunnel.",
+    gapFill: "The police wouldn’t ____________________________ through the tunnel.",
+    answer: ["let us drive"],
+    tags: "B2, causative, modal verbs, gerunds and infinitives"
+  },
+  {
+    keyWord: "seen",
+    fullSentence: "“Did you see the football match on Sunday?” asked Marco.",
+    gapFill: "Marco wanted to know if I had ____________________________ on Sunday.",
+    answer: ["seen the football match"],
+    tags: "B2, reported speech, past perfect"
+  },
+  {
+    keyWord: "there",
+    fullSentence: "“I think this shirt is torn,” said Anna to the cashier.",
+    gapFill: "“I think ____________________________ this shirt,” Anna said to the cashier.",
+    answer: ["there is a tear in"],
+    tags: "B2, noun phrases"
+  },
+  {
+    keyWord: "attention",
+    fullSentence: "Leo always ignores everything I suggest.",
+    gapFill: "Leo never pays ____________________________ I suggest.",
+    answer: ["attention to what"],
+    tags: "B2, fixed phrase, prepositions"
+  },
+  {
+    keyWord: "lend",
+    fullSentence: "“Could I borrow your tablet, Jason?” asked Emma.",
+    gapFill: "Emma asked Jason ____________________________ his tablet.",
+    answer: ["to lend her"],
+    tags: "B2, reporting verbs, gerunds and infinitives"
+  },
+  {
+    keyWord: "might",
+    fullSentence: "Maybe Tom didn’t remember that we moved the deadline.",
+    gapFill: "Tom ____________________________ that we moved the deadline.",
+    answer: ["might have forgotten"],
+    tags: "B2, past modals, speculation"
+  },
+  {
+    keyWord: "fun",
+    fullSentence: "All the students have a great time during the science workshop.",
+    gapFill: "Every ____________________________ during the science workshop.",
+    answer: ["student has fun", "student has a lot of fun"],
+    tags: "B2, noun phrases, quantifiers"
+  },
+  {
+    keyWord: "my",
+    fullSentence: "While I was in Berlin, I had some unforgettable experiences.",
+    gapFill: "During ____________________________ had some unforgettable experiences.",
+    answer: [
+      "my trip to Berlin I",
+      "my time in Berlin I",
+      "my holiday in Berlin I"
+    ],
+    tags: "B2, noun phrases, past simple"
+  },
+  {
+    keyWord: "ought",
+    fullSentence: "You were careless to go out without switching the oven off.",
+    gapFill: "You ____________________________ the oven off before you went out.",
+    answer: ["ought to have switched", "ought to have turned"],
+    tags: "B2, past modals, advice"
+  },
+  {
+    keyWord: "chance",
+    fullSentence: "“Is there any possibility that James will leave his partner?” asked Zoe.",
+    gapFill: "Zoe asked if there was any ____________________________ leaving his partner.",
+    answer: ["chance of James", "chance of James’s"],
+    tags: "B2, noun phrases, speculation"
+  },
+  {
+    keyWord: "nobody",
+    fullSentence: "Sophie is the only one who responded to the email.",
+    gapFill: "Apart ____________________________ responded to the email.",
+    answer: ["from Sophie nobody"],
+    tags: "B2, prepositions, quantifiers"
+  },
+  {
+    keyWord: "used",
+    fullSentence: "Do you feel comfortable with the new software yet?",
+    gapFill: "Have you ____________________________ the new software yet?",
+    answer: ["got used to", "gotten used to"],
+    tags: "B2, used to, verb patterns, perfect"
+  },
+  {
+    keyWord: "felt",
+    fullSentence: "It was such a cold day that nobody wanted to go outside.",
+    gapFill: "Nobody ____________________________ outside because it was so cold.",
+    answer: ["felt like going"],
+    tags: "B2, Gerunds and infinitives, phrasal verbs"
+  },
+  {
+    keyWord: "unable",
+    fullSentence: "Daniel couldn’t speak or understand French.",
+    gapFill: "Besides ____________________________ French, Daniel couldn’t understand it either.",
+    answer: ["being unable to speak"],
+    tags: "B2, gerunds and infinitives, ability"
+  },
+  {
+    keyWord: "soon",
+    fullSentence: "The meeting will begin immediately upon the CEO’s entrance.",
+    gapFill: "The meeting will begin ____________________________ the CEO enters.",
+    answer: ["as soon as"],
+    tags: "B2, linking, time expressions"
+  },
+  {
+    keyWord: "strange",
+    fullSentence: "That’s the weirdest book I’ve ever read!",
+    gapFill: "I’ve never ____________________________ book!",
+    answer: ["read such a strange"],
+    tags: "B2, emphasis, comparatives"
+  },
+  {
+    keyWord: "around",
+    fullSentence: "A cheerful guide took us around the city.",
+    gapFill: "We ____________________________ by a cheerful guide.",
+    answer: ["were taken around the city"],
+    tags: "B2, Passive, verb forms, phrasal verbs"
+  },
+  {
+    keyWord: "insisted",
+    fullSentence: "My dad was determined to cover the bill.",
+    gapFill: "My dad ____________________________ the bill.",
+    answer: ["insisted on paying"],
+    tags: "B2, reporting verbs, gerunds and infinitives, reported speech, prepositions"
+  },
+  {
+    keyWord: "succeed",
+    fullSentence: "The coach didn’t manage to convince Mia to join the team.",
+    gapFill: "The coach didn’t ____________________________ Mia to join the team.",
+    answer: ["succeed in convincing"],
+    tags: "B2, verb patterns, prepositions, gerunds and infinitives, formal"
+  },
+  {
+    keyWord: "mind",
+    fullSentence: "“I’d prefer it if you didn’t eat in this room,” said the teacher.",
+    gapFill: "“Would you ____________________________ in this room?” said the teacher.",
+    answer: ["mind not eating"],
+    tags: "B2, Gerunds and infinitives, verb patterns"
+  },
+  {
+    keyWord: "good",
+    fullSentence: "Rachel impressed her interviewer by answering confidently.",
+    gapFill: "Rachel ____________________________ her interviewer by answering confidently.",
+    answer: ["made a good impression on"],
+    tags: "B2, fixed phrase, prepositions"
+  },
+  {
+    keyWord: "wishes",
+    fullSentence: "Hannah regrets not telling her friend the truth.",
+    gapFill: "Hannah ____________________________ her friend the truth.",
+    answer: ["wishes she had told"],
+    tags: "B2, unreal forms, past perfect, perfect"
+  },
+  {
+    keyWord: "trouble",
+    fullSentence: "I struggled to understand the safety guidelines.",
+    gapFill: "I ____________________________ the safety guidelines.",
+    answer: ["had trouble understanding"],
+    tags: "B2, Gerunds and infinitives, fixed phrase, noun phrases"
   }
 ];
 
