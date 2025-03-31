@@ -723,7 +723,7 @@ const transformations = [
     gapFill: "Alessio was under the __________________ be easy to pass the driving test.",
     fullSentence: "Alessio thought the driving test would be easy to pass.",
     answer: ["impression it would", "impression that it would"],
-    tags: "C1, fixed phrase, future in the past"
+    tags: "C1, fixed phrase, future"
   },
   {
     keyWord: "reputation",
@@ -856,7 +856,7 @@ const transformations = [
     gapFill: "The meals in that restaurant are __________________ pay for.",
     fullSentence: "Olivia couldn’t possibly afford any of the meals in that restaurant.",
     answer: "far too expensive for Olivia to",
-    tags: "C1, comparatives"
+    tags: "C1, comparatives and superlatives"
   },
   {
     keyWord: "wonder",
@@ -996,7 +996,7 @@ const transformations = [
     "gapFill": "I _____________________ ages.",
     "fullSentence": "Luis hasn't messaged me in ages.",
     "answer": ["have not heard from Luis for", "have not heard from Luis in", "have heard nothing from Luis for", "have heard nothing from Luis in", "have not heard anything from Luis for", "have not heard anything from Luis in"],
-    "tags": "C1, general structure"
+    "tags": "C1, perfect, prepositions"
   },
   {
     "keyWord": "every",
@@ -1031,7 +1031,7 @@ const transformations = [
     "gapFill": "Jay’s startup was _____________________ during its first year.",
     "fullSentence": "Jay’s startup didn’t achieve much success during its first year.",
     "answer": "not so successful",
-    "tags": "C1, comparatives"
+    "tags": "C1, comparatives and superlatives"
   },
   {
     "keyWord": "should",
@@ -1634,7 +1634,7 @@ const transformations = [
       "get far more than",
       "get far more money than"
     ],
-    tags: "B2, comparatives, quantifiers"
+    tags: "B2, comparatives and superlatives, quantifiers"
   },
   {
     keyWord: "feel",
@@ -1717,7 +1717,7 @@ const transformations = [
     gapFill: "Yoga _______________________ now than ten years ago.",
     fullSentence: "The popularity of yoga has grown over the past ten years.",
     answer: ["is much more popular"],
-    tags: "B2, comparatives"
+    tags: "B2, comparatives and superlatives"
   },
   {
     keyWord: "give",
@@ -1978,7 +1978,7 @@ const transformations = [
     gapFill: "'I've _______________________________________ Airbnb than this,' said Jordan.",
     fullSentence: "'This is the nicest Airbnb I've ever stayed in,' said Jordan.",
     answer: ["never stayed in a nicer", "never stayed in a better"],
-    tags: "B2, comparatives, present perfect"
+    tags: "B2, comparatives and superlatives, present perfect"
   },
   {
     keyWord: "came",
@@ -1999,7 +1999,7 @@ const transformations = [
     fullSentence: "Ella hadn’t expected the exhibition to be so interesting.",
     gapFill: "The exhibition ____________________________ Ella had expected.",
     answer: ["was better than"],
-    tags: "B2, comparatives"
+    tags: "B2, comparatives and superlatives"
   },
   {
     keyWord: "does",
@@ -2164,7 +2164,7 @@ const transformations = [
     fullSentence: "That’s the weirdest book I’ve ever read!",
     gapFill: "I’ve never ____________________________ book!",
     answer: ["read such a strange"],
-    tags: "B2, emphasis, comparatives"
+    tags: "B2, emphasis, comparatives and superlatives"
   },
   {
     keyWord: "around",
