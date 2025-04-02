@@ -3018,6 +3018,238 @@ const transformations = [
       "Thrilled at how skillful a"
     ],
     tags: "C2, emphasis, noun phrases, passive voice"
+  },
+  {
+    keyWord: "herself",
+    gapFill: "Paula has always ____________________________ most outstanding way.",
+    fullSentence: "Paula has consistently shown outstanding dedication to her career.",
+    answer: ["dedicated herself to her career in the", "committed herself to her career in the"],
+    tags: "C2, reflexive pronouns, present perfect, collocations, prepositions"
+  },
+  {
+    keyWord: "come",
+    gapFill: "This hold-up is annoying, but I’m sure Fran can ____________________________ to these issues.",
+    fullSentence: "This hold-up is annoying, but I’m confident Fran will solve these issues.",
+    answer: ["come up with a solution", "come up with the answer", "come up with the solution"],
+    tags: "C2, phrasal verbs, modals"
+  },
+  {
+    keyWord: "delight",
+    gapFill: "Much ____________________________ chosen for the national choir.",
+    fullSentence: "Lara was thrilled to be chosen for the national choir.",
+    answer: ["to Lara’s delight, she was", "to the delight of Lara, she was"],
+    tags: "C2, fixed phrase, passive voice, fronting, possessive"
+  },
+  {
+    keyWord: "leave",
+    gapFill: "Fatima didn’t ____________________________ on the day of the event.",
+    fullSentence: "Fatima wanted to make sure that every detail of the event went according to plan.",
+    answer: ["want to leave anything to chance", "intend to leave anything to chance"],
+    tags: "C2, idioms, verb patterns, gerunds and infinitives"
+  },
+  {
+    keyWord: "purpose",
+    gapFill: "The director’s ____________________________ to review the department’s employee turnover.",
+    fullSentence: "The director organised a meeting to go over the department’s employee turnover.",
+    answer: ["purpose in organising a meeting was", "purpose for organising a meeting was", "purpose for organising the meeting was", "purpose in organising the meeting was"],
+    tags: "C2, gerunds and infinitives, noun phrases, purpose, prepositions"
+  },
+  {
+    keyWord: "lacks",
+    gapFill: "Odd ____________________________ formal qualifications in fashion.",
+    fullSentence: "It may appear odd, the designer has no official qualifications in fashion.",
+    answer: ["as it seems, the designer lacks any", "though it seems, the designer lacks any", "though it appears, the designer lacks any", "as it appears, the designer lacks any", "as it seems, the designer lacks", "though it seems, the designer lacks", "though it appears, the designer lacks", "as it appears, the designer lacks", "though it may appear the designer lacks", "as it may appear the designer lacks", "though it may seem the designer lacks", "though it may appear the designer lacks any", "as it may appear the designer lacks any", "though it may seem the designer lacks any"],
+    tags: "C2, concession, contrast, fronting"
+  },
+  {
+    keyWord: "occurred",
+    gapFill: "It has never ____________________________ the concierge for dining advice.",
+    fullSentence: "It never crossed my mind to ask the concierge where to eat.",
+    answer: ["occurred to me to ask", "occurred to me that I could ask", "occurred to me I could ask"],
+    tags: "C2, fixed phrase, past simple, negatives"
+  },
+  {
+    keyWord: "hard",
+    gapFill: "No matter ____________________________, I couldn’t convince Mia to attend the show.",
+    fullSentence: "Even though I tried everything, I couldn’t convince Mia to attend the show.",
+    answer: ["how hard I tried", "how much I tried"],
+    tags: "C2, concession, emphasis"
+  },
+  {
+    keyWord: "light",
+    gapFill: "The authorities had to release the accused ____________________________ evidence that emerged.",
+    fullSentence: "The authorities were forced to release the accused after new proof emerged.",
+    answer: ["in light of the new", "in the light of the new", "in the light of new", "in light of new"],
+    tags: "C2, linking, formal, noun phrases, idioms"
+  },
+  {
+    keyWord: "sharp",
+    gapFill: "There has been ____________________________ wood and cement in recent months.",
+    fullSentence: "The price of wood and cement has gone up significantly in recent months.",
+    answer: ["a sharp rise in the price of", "a sharp increase in the price of"],
+    tags: "C2, noun phrases, quantifiers, trends"
+  },
+  {
+    keyWord: "waited",
+    gapFill: "Lena ____________________________ before breaking the news.",
+    fullSentence: "Lena didn’t break the news to Josh until he’d cleared his plate.",
+    answer: ["waited for Josh to clear his plate", "waited until Josh had cleared his plate"],
+    tags: "C2, past perfect, time clauses, verb patterns"
+  },
+  {
+    keyWord: "taken",
+    gapFill: "Don’t let ____________________________ his casual style. He's extremely sharp in negotiations.",
+    fullSentence: "Don’t be fooled by Max’s casual style — he’s extremely sharp in negotiations.",
+    answer: ["yourself be taken in by", "yourself get taken in by"],
+    tags: "C2, passive voice, reflexive pronouns, idioms, phrasal verbs"
+  },
+  {
+    keyWord: "no",
+    gapFill: "Providing ____________________________  the situation, we’ll leave in the evening.",
+    fullSentence: "We’ll leave in the evening unless the situation changes dramatically.",
+    answer: ["there is no dramatic change in", "there are no dramatic changes in", "there is no dramatic change to", "there are no dramatic changes to"],
+    tags: "C2, conditional, noun phrases, linking, formal"
+  },
+  {
+    keyWord: "terms",
+    gapFill: "Mateo found it difficult ____________________________ losing his job.",
+    fullSentence: "Mateo struggled to accept that he was no longer employed.",
+    answer: ["to come to terms with", "coming to terms with"],
+    tags: "C2, idioms, gerunds and infinitives, fixed phrase"
+  },
+  {
+    keyWord: "has",
+    gapFill: "Ben ____________________________ his cousin again.",
+    fullSentence: "Ben never intends to visit his cousin again.",
+    answer: ["has no intention of visiting", "has no plans of visiting", "has no intention of ever visiting", "has no plans of ever visiting"],
+    tags: "C2, fixed phrase, noun phrases, formal, prepositions"
+  },
+  {
+    keyWord: "believe",
+    gapFill: "Sam ____________________________ he would win the competition.",
+    fullSentence: "They made Sam think he would to win the competition.",
+    answer: ["was led to believe that", "was given to believe that", "was led to believe", "was given to believe"],
+    tags: "C2, passive voice, gerunds and infinitives, formal"
+  },
+  {
+    keyWord: "how",
+    gapFill: "Little does ____________________________ a table at that restaurant is.",
+    fullSentence: "Kyra is completely unaware of the difficulty of getting a table at that restaurant.",
+    answer: ["Kyra know how difficult getting", "Kyra realise how difficult getting", "Kyra suspect how difficult getting", "Kyra know how hard getting", "Kyra realise how hard getting", "Kyra suspect how hard getting"],
+    tags: "C2, inversion, indirect questions, emphasis"
+  },
+  {
+    keyWord: "made",
+    gapFill: "The first speaker ____________________________ the panel.",
+    fullSentence: "From the moment he spoke, the panel were impressed by his confidence.",
+    answer: ["made an instant impression on", "made an immediate impression on"],
+    tags: "C2, fixed phrase, noun phrase, formal"
+  },
+  {
+    keyWord: "ease",
+    gapFill: "Sam’s parents ____________________________ their warm greeting.",
+    fullSentence: "Sam’s parents greeted me so warmly that I felt comfortable.",
+    answer: ["put me at ease with", "made me feel at ease with"],
+    tags: "C2, idioms, verb patterns, noun phrase, prepositions"
+  },
+  {
+    keyWord: "whatsoever",
+    gapFill: "There ____________________________  the quarry.",
+    fullSentence: "The quarry was completely devoid of valuable minerals.",
+    answer: ["were no valuable minerals whatsoever in", "were not any valuable materials whatsoever in"],
+    tags: "C2, emphasis, formal, quantifiers"
+  },
+  {
+    keyWord: "ever",
+    gapFill: "Under ____________________________ with that band again.",
+    fullSentence: "We’ve made it clear we won’t collaborate with that brand again — no exceptions.",
+    answer: ["no circumstances will we ever collaborate", "no circumstances whatsoever will we ever collaborate", "no circumstances will we collaborate", "no circumstances whatsoever will we collaborate"],
+    tags: "C2, inversion, fixed phrases, emphasis"
+  },
+  {
+    keyWord: "came",
+    gapFill: "Leo ____________________________ that accepting the offer was best.",
+    fullSentence: "Eventually, Leo concluded that accepting the offer was the best option.",
+    answer: ["came to the conclusion", "came to the realisation", "came to the realization", "came to the conclusion that", "came to the realisation that", "came to the realization that"],
+    tags: "C2, fixed phrase, noun phrases, prepositions, formal"
+  },
+  {
+    keyWord: "mood",
+    gapFill: "Bella ____________________________ anything social last night.",
+    fullSentence: "Last night, Bella didn't feel like doing anything social.",
+    answer: ["was not in the mood to do", "was not in any mood to do", "was not in the mood for doing", "was in no mood to do", "was in no mood for doing"],
+    tags: "C2, idioms, noun phrases, prepositions"
+  },
+  {
+    keyWord: "aback",
+    gapFill: "Everyone ____________________________ the president’s arrest.",
+    fullSentence: "The announcement that the president had been arrested was a great shock.",
+    answer: ["was taken aback by the announcement of", "was taken aback at the announcement of"],
+    tags: "C2, passive, idiomatic expression, news reporting"
+  },
+  {
+    keyWord: "it",
+    gapFill: "Had ____________________________ the new fitness routine, Ravi would never have qualified.",
+    fullSentence: "If he hadn't had a new fitness routine, Ravi would never have qualified for the finals.",
+    answer: ["it not been for"],
+    tags: "C2, inversion, conditionals, formal, emphasis"
+  },
+  {
+    keyWord: "concern",
+    gapFill: "Finn told his mother that what he ____________________________ of hers.",
+    fullSentence: "‘What I choose to do with my time is none of your business!’ Finn said to his mother.",
+    answer: ["did with his time was no concern", "was doing with his time was no concern"],
+    tags: "C2, reported speech, noun phrases, cleft sentence, emphasis"
+  },
+  {
+    keyWord: "point",
+    gapFill: "I ____________________________ when Leo arrived.",
+    fullSentence: "I was just about to leave the gym when Leo called.",
+    answer: ["was on the point of leaving the gym", "was on the point of leaving"],
+    tags: "C2, time expressions, fixed phrase, prepositions"
+  },
+  {
+    keyWord: "sooner",
+    gapFill: "No ____________________________ I realised I’d left my bag at home.",
+    fullSentence: "I’d barely got into the taxi when I realised I’d left my bag at home.",
+    answer: ["sooner had I got into the taxi than", "sooner had I got in the taxi than"],
+    tags: "C2, inversion, time clauses, past perfect, emphasis"
+  },
+  {
+    keyWord: "notice",
+    gapFill: "Lucas ____________________________ his brother’s advice.",
+    fullSentence: "Lucas paid no attention at all to what his brother told him.",
+    answer: [
+      "took absolutely no notice of",
+      "took no notice whatsoever of",
+      "took no notice of",
+      "took no notice at all of",
+      "did not take any notice of",
+      "did not take notice at all of",
+      "did not take any notice whatsoever of"
+    ],
+    tags: "C2, emphasis, fixed phrase, prepositions, noun phrases"
+  },
+  {
+    keyWord: "time",
+    gapFill: "This is ____________________________ school early without telling anyone.",
+    fullSentence: "Erin has left school early without telling anyone in the past.",
+    answer: ["not the first time Erin has left", "not the first time that Erin has left"],
+    tags: "C2, present perfect, time expressions"
+  },
+  {
+    keyWord: "better",
+    gapFill: "Sonia is ____________________________ than as a poet.",
+    fullSentence: "Most people know more about Sonia’s journalism than her poetry.",
+    answer: ["better known as a journalist", "better known as a writer"],
+    tags: "C2, comparison, passive voice, noun phrases, prepositions"
+  },
+  {
+    keyWord: "brought",
+    gapFill: "It ____________________________ that you’ve missed every deadline this month.",
+    fullSentence: "I've just been informed you’ve missed every deadline this month.",
+    answer: ["has been brought to my attention", "has just been brought to my attention"],
+    tags: "C2, passive voice, formal, present perfect, noun phrases"
   }
 ];
 
