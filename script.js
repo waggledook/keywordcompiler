@@ -1,3 +1,30 @@
+// Utility functions
+function loadScript(url, callback) {
+  const script = document.createElement("script");
+  script.src = url;
+  script.onload = callback;
+  document.head.appendChild(script);
+}
+
+function loadCSS(url) {
+  const link = document.createElement("link");
+  link.href = url;
+  link.rel = "stylesheet";
+  document.head.appendChild(link);
+}
+
+// Since we're now using a plain dropdown, we don't need to initialize select2.
+// This function can simply be a placeholder (or removed entirely if not needed).
+function initTagSelect() {
+  document.addEventListener("DOMContentLoaded", function () {
+    // No special initialization is required for the plain dropdown.
+  });
+}
+
+function addCustomSelect2Styles() {
+  // No custom styles needed for plain dropdown.
+}
+
 function loadScript(url, callback) {
   const script = document.createElement("script");
   script.src = url;
@@ -70,7 +97,6 @@ function isAnswerCorrect(userAnswer, acceptedAnswers) {
   return acceptedAnswers.some(ans => normalize(ans) === normUser);
 }
 
-
 class KeywordTransformationGame {
   constructor(transformations) {
     this.allTransformations = transformations;
@@ -79,8 +105,7 @@ class KeywordTransformationGame {
     this.initFilterUI();
   }
 
-  // (Filter UI code remains unchanged...)
-initFilterUI() {
+  initFilterUI() {
   document.body.innerHTML = `
     <style>
       html, body {
@@ -92,8 +117,6 @@ initFilterUI() {
         font-family: 'Poppins', sans-serif;
         color: white;
         text-align: center;
-        
-        /* Force the gradient to fill the entire viewport */
         background: linear-gradient(135deg, #2E3192, #1BFFFF) no-repeat center center fixed;
         background-size: cover;
       }
@@ -104,7 +127,7 @@ initFilterUI() {
         padding: 30px 20px;
         border-radius: 10px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        margin-top: 5%; /* push the container down a bit */
+        margin-top: 5%;
       }
       #filter-container h1 {
         margin-bottom: 20px;
@@ -114,21 +137,6 @@ initFilterUI() {
       #filter-container p {
         margin: 10px 0 5px;
         font-weight: 600;
-      }
-      #filter-container select {
-        padding: 10px;
-        font-size: 16px;
-        margin: 0 auto 20px;
-        border-radius: 5px;
-        border: none;
-        background-color: #f2f2f2;
-        color: #333;
-        min-width: 180px;
-        transition: box-shadow 0.3s;
-      }
-      #filter-container select:focus {
-        outline: none;
-        box-shadow: 0 0 6px #FFD700;
       }
       #filter-container button {
         padding: 12px 24px;
@@ -148,17 +156,61 @@ initFilterUI() {
       #filter-container button:active {
         transform: translateY(1px);
       }
+      /* Styles for level checkboxes */
+      #levelCheckboxes {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      #levelCheckboxes label {
+        font-size: 16px;
+      }
+      /* Shared styles for both select elements */
+      #filter-container select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+        border-radius: 4px;
+        padding: 0.5em 2.5em 0.5em 0.5em;
+        font-size: 16px;
+        cursor: pointer;
+        outline: none;
+        background-image: url("data:image/svg+xml,%3Csvg fill='%23FFF' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75em center;
+        background-size: 1em;
+        width: 60%;
+      }
+      #filter-container select:focus {
+        border-color: #999;
+      }
+      /* Styles for the tag search input */
+      #tagSearch {
+        margin-bottom: 10px;
+        padding: 0.5em;
+        width: 60%;
+        font-size: 16px;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        outline: none;
+      }
     </style>
     <div id="filter-container">
       <h1>Keyword Transformation Game</h1>
-      <p>Select Level:</p>
-      <select id="levelSelect">
-        <option value="all">All Levels</option>
-        <option value="B2">B2</option>
-        <option value="C1">C1</option>
-        <option value="C2">C2</option>
-      </select>
+      <p>Select Level(s):</p>
+      <div id="levelCheckboxes">
+        <label><input type="checkbox" value="B2" checked> B2</label>
+        <label><input type="checkbox" value="C1" checked> C1</label>
+        <label><input type="checkbox" value="C2" checked> C2</label>
+      </div>
       <p>Select Tag:</p>
+      <input type="text" id="tagSearch" placeholder="Search tags...">
       <select id="tagSelect">
         <option value="all">All Tags</option>
       </select>
@@ -167,35 +219,57 @@ initFilterUI() {
     </div>
   `;
   
-  document.getElementById("levelSelect").addEventListener("change", () => this.updateTagOptions());
+  // Attach listeners for level checkboxes
+  const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
+  checkboxes.forEach(chk => {
+    chk.addEventListener("change", () => this.updateTagOptions());
+  });
+  
+  // Attach the start game button listener
   document.getElementById("startGameBtn").addEventListener("click", () => this.startGame());
+  
+  // Initialize the tag options
   this.updateTagOptions();
+  
+  // Add event listener for tag search filtering
+  document.getElementById("tagSearch").addEventListener("input", function() {
+    const filter = this.value.toLowerCase();
+    const select = document.getElementById("tagSelect");
+    for (let i = 0; i < select.options.length; i++) {
+      const option = select.options[i];
+      if (option.value === "all") {
+        option.style.display = "block";
+      } else {
+        option.style.display = option.textContent.toLowerCase().includes(filter) ? "block" : "none";
+      }
+    }
+  });
 }
 
-
-
-
   updateTagOptions() {
-    // (Code remains unchanged)
-    const level = document.getElementById("levelSelect").value;
-    let relevant = (level === "all") 
-      ? this.allTransformations 
-      : this.allTransformations.filter(t => {
-          let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
-          return tags.includes(level.toLowerCase());
-        });
+    const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
+    let selectedLevels = Array.from(checkboxes)
+      .filter(chk => chk.checked)
+      .map(chk => chk.value.toLowerCase());
+    if (selectedLevels.length === 0) {
+      selectedLevels = ["b2", "c1", "c2"];
+    }
+
+    // Filter transformations based on selected levels
+    let relevant = this.allTransformations.filter(t => {
+      let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
+      return selectedLevels.some(level => tags.includes(level));
+    });
+
+    // Build a set of non-level tags
     let tagSet = new Set();
     relevant.forEach(t => {
-  t.tags.split(",")
-    .map(s => s.trim().toLowerCase())
-    .filter(s => s !== "")
-    .forEach(tag => {
-      // If you want to exclude b2, c1, c2 in any case:
-      if (!["b2", "c1", "c2"].includes(tag)) {
-        tagSet.add(tag);
-      }
+      t.tags.split(",")
+        .map(s => s.trim().toLowerCase())
+        .filter(s => s && !["b2", "c1", "c2"].includes(s))
+        .forEach(tag => tagSet.add(tag));
     });
-});
+
     const tagArray = Array.from(tagSet).sort();
     const tagSelect = document.getElementById("tagSelect");
     tagSelect.innerHTML = `<option value="all">All Tags</option>`;
@@ -208,21 +282,26 @@ initFilterUI() {
   }
 
   startGame() {
-    const level = document.getElementById("levelSelect").value;
-    const tag = document.getElementById("tagSelect").value;
-    let filtered = this.allTransformations;
-    if (level !== "all") {
-      filtered = filtered.filter(t => {
-        let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
-        return tags.includes(level.toLowerCase());
-      });
+    const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
+    let selectedLevels = Array.from(checkboxes)
+      .filter(chk => chk.checked)
+      .map(chk => chk.value.toLowerCase());
+    if (selectedLevels.length === 0) {
+      selectedLevels = ["b2", "c1", "c2"];
     }
+    let filtered = this.allTransformations.filter(t => {
+      let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
+      return selectedLevels.some(level => tags.includes(level));
+    });
+
+    const tag = document.getElementById("tagSelect").value;
     if (tag !== "all") {
       filtered = filtered.filter(t => {
         let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
         return tags.includes(tag.toLowerCase());
       });
     }
+
     if (filtered.length === 0) {
       alert("No transformations found for the selected filters.");
       return;
@@ -1457,8 +1536,8 @@ const transformations = [
     keyWord: "should",
     fullSentence: "This gate must remain open at all times.",
     gapFill: "On no _______________________ closed.",
-    answer: ["account should this gate be", "account should this gate be kept"],
-    tags: "C1, modal verbs, inversion"
+    answer: ["account should this gate be", "account should this gate be kept", "account must this gate be", "account must this gate be kept"],
+    tags: "C1, modal verbs, inversion, passive voice"
   },
   {
     keyWord: "support",
@@ -1901,7 +1980,7 @@ const transformations = [
     gapFill: "Professor Klein _______________________________________ by an architect.",
     fullSentence: "An architect designed the building for Professor Klein.",
     answer: ["had the building designed"],
-    tags: "B2, causative have, passive, causative"
+    tags: "B2, causative have, passive voice, causative"
   },
   {
     keyWord: "accused",
@@ -1957,7 +2036,7 @@ const transformations = [
     gapFill: "The travel agency _______________________________________ Lara’s aunt in 1988.",
     fullSentence: "Lara’s aunt founded the travel agency in 1988.",
     answer: ["was set up by"],
-    tags: "B2, phrasal verbs, passive"
+    tags: "B2, phrasal verbs, passive voice"
   },
   {
     keyWord: "rise",
@@ -2171,7 +2250,7 @@ const transformations = [
     fullSentence: "A cheerful guide took us around the city.",
     gapFill: "We ____________________________ by a cheerful guide.",
     answer: ["were taken around the city"],
-    tags: "B2, Passive, verb forms, phrasal verbs"
+    tags: "B2, Passive voice, verb forms, phrasal verbs"
   },
   {
     keyWord: "insisted",
@@ -2565,7 +2644,7 @@ const transformations = [
       "was held up on account of unforeseen",
       "was held up as a result of unforeseen"
     ],
-    tags: "C2, passive, causative, linking"
+    tags: "C2, passive voice, causative, linking"
   },
   {
     keyWord: "ANYTHING",
@@ -2655,7 +2734,7 @@ const transformations = [
       "requested to remain in their seats",
       "Requested to remain seated"
     ],
-    tags: "C2, passive, formal instruction"
+    tags: "C2, passive voice, formal instruction"
   },
   {
     keyWord: "DEAL",
@@ -2836,7 +2915,7 @@ const transformations = [
       "will be subject to delays",
       "are subject to delays"
     ],
-    tags: "C2, passive, formal"
+    tags: "C2, passive voice, formal"
   },
   {
     keyWord: "CONSEQUENCE",
@@ -2941,5 +3020,11 @@ const transformations = [
     tags: "C2, emphasis, noun phrases, passive voice"
   }
 ];
+
+transformations.forEach(obj => {
+  if (!obj.fullSentence || !obj.keyWord) {
+    console.error("Incomplete transformation detected:", obj);
+  }
+});
 
 const game = new KeywordTransformationGame(transformations);
