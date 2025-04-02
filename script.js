@@ -2673,7 +2673,7 @@ const transformations = [
       "Without having been advised by her sister",
       "Without her sister's advising her"
     ],
-    tags: "C2, conditional, prepositions, time clauses"
+    tags: "C2, conditionals, prepositions, time clauses"
   },
   {
     keyWord: "SUBJECT",
@@ -3108,7 +3108,7 @@ const transformations = [
     gapFill: "Providing ____________________________  the situation, we’ll leave in the evening.",
     fullSentence: "We’ll leave in the evening unless the situation changes dramatically.",
     answer: ["there is no dramatic change in", "there are no dramatic changes in", "there is no dramatic change to", "there are no dramatic changes to"],
-    tags: "C2, conditional, noun phrases, linking, formal"
+    tags: "C2, conditionals, noun phrases, linking, formal"
   },
   {
     keyWord: "terms",
