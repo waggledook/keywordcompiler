@@ -527,47 +527,56 @@ shareSet() {
 }
 
   initGameUI() {
-    // Build HTML for each challenge, each with its own submit button.
-    let challengesHTML = "";
-    // Inside initGameUI() where challengesHTML is built:
-this.selectedChallenges.forEach((challenge, index) => {
-  // Highlight key word in the full sentence (only first occurrence)
-  let highlightedFull = challenge.fullSentence.replace(
-    new RegExp(`\\b(${challenge.keyWord})\\b`, "i"),
-    `<span class="highlight">$1</span>`
-  );
+  let challengesHTML = "";
+  
+  this.selectedChallenges.forEach((challenge, index) => {
+    // Highlight key word in the full sentence (only first occurrence)
+    let highlightedFull = challenge.fullSentence.replace(
+      new RegExp(`\\b(${challenge.keyWord})\\b`, "i"),
+      `<span class="highlight">$1</span>`
+    );
 
-  // Determine level from tags and set expected word count
-  let levelTag = challenge.tags
-    .split(",")
-    .map(s => s.trim().toLowerCase())
-    .find(t => t === "c1" || t === "b2" || t === "c2");
+    // Determine level from tags and set expected word count
+    let levelTag = challenge.tags
+      .split(",")
+      .map(s => s.trim().toLowerCase())
+      .find(t => t === "c1" || t === "b2" || t === "c2");
 
-  let expectedLength = "";
-  if (levelTag === "c1") {
-    expectedLength = "3-7 words";
-  } else if (levelTag === "b2") {
-    expectedLength = "2-5 words";
-  } else if (levelTag === "c2") {
-    expectedLength = "3-8 words";
-  }
+    // Build a display string like "B2: 2-5 words"
+    let displayLevel = "";
+    if (levelTag === "b2") {
+      displayLevel = "B2: 2-5 words";
+    } else if (levelTag === "c1") {
+      displayLevel = "C1: 3-7 words";
+    } else if (levelTag === "c2") {
+      displayLevel = "C2: 3-8 words";
+    }
 
-  challengesHTML += `
-    <div class="challenge" style="margin-bottom:20px; padding:10px; background: rgba(0,0,0,0.6); border-radius:5px;">
-      <p class="fullSentence">Full sentence: ${highlightedFull}</p>
-      <p class="keyword" style="font-size:1.5em; font-weight:bold;">
-         <span class="keyword-label" style="color: #235a8c;">Key word:</span>
-         <span class="keyword-value" style="color: #FFD700;"> ${challenge.keyWord}</span>
-      </p>
-      <p class="gapFillPrompt">Fill in the blank: ${challenge.gapFill}</p>
-      <p class="word-spec" style="color: #FF5733;">Expected answer length: ${expectedLength}</p>
-      <input type="text" id="answer-${index}" placeholder="Enter missing words">
-      <button id="submit-${index}">Submit Answer</button>
-      <p id="feedback-${index}" style="margin:5px 0;"></p>
-    </div>
-  `;
-});
+    challengesHTML += `
+      <div class="challenge" style="margin-bottom:20px; padding:10px; background: rgba(0,0,0,0.6); border-radius:5px;">
+        <!-- Remove "Full sentence:" label, just show the sentence -->
+        <p class="fullSentence">${highlightedFull}</p>
 
+        <!-- Keep the keyword display -->
+        <p class="keyword" style="font-size:1.5em; font-weight:bold;">
+          <span class="keyword-label" style="color: #235a8c;">Key word:</span>
+          <span class="keyword-value" style="color: #FFD700;"> ${String(challenge.keyWord).toLowerCase()}</span>
+        </p>
+
+        <!-- Show the gap fill + level info in red -->
+        <p class="gapFillPrompt">
+  ${challenge.gapFill} 
+  <strong style="color: #FF5733;">(${displayLevel})</strong>
+</p>
+
+        <!-- Removed the "Expected answer length" line entirely -->
+
+        <input type="text" id="answer-${index}" placeholder="Enter missing words">
+        <button id="submit-${index}">Submit Answer</button>
+        <p id="feedback-${index}" style="margin:5px 0;"></p>
+      </div>
+    `;
+  });
     
     document.body.innerHTML = `
     <style>
@@ -870,7 +879,7 @@ reviewMistakes() {
         <p class="fullSentence">Full sentence: ${highlightedFull}</p>
         <p class="keyword" style="font-size:1.5em; font-weight:bold;">
            <span class="keyword-label" style="color: #235a8c;">Key word:</span>
-           <span class="keyword-value" style="color: #FFD700;"> ${challenge.keyWord}</span>
+           <span class="keyword-value" style="color: #FFD700;"> ${challenge.keyWord.toLowerCase()}</span>
         </p>
         <p class="gapFillPrompt">Fill in the blank: ${challenge.gapFill}</p>
         <p class="word-spec" style="color: #FF5733;">Expected answer length: ${expectedLength}</p>
