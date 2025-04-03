@@ -200,6 +200,23 @@ class KeywordTransformationGame {
         color: #fff;
         outline: none;
       }
+      #addTagBtn {
+  background: linear-gradient(135deg, #FFFFFF 0%, #C0C0C0 50%, #E5E4E2 100%) !important;
+  color: #000;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#addTagBtn:hover {
+  background: linear-gradient(135deg, #E5E4E2 0%, #C0C0C0 50%, #FFFFFF 100%) !important;
+  transform: translateY(-2px);
+}
+#addTagBtn:active {
+  transform: translateY(1px);
+}
     </style>
     <div id="filter-container">
       <h1>Keyword Transformation Game</h1>
@@ -214,6 +231,15 @@ class KeywordTransformationGame {
       <select id="tagSelect">
         <option value="all">All Tags</option>
       </select>
+      <!-- New "Add Tag" button -->
+      <button id="addTagBtn">Add Tag?</button>
+      <!-- Container for the additional tag dropdown (hidden by default) -->
+      <div id="additionalTagContainer" style="display:none;">
+        <p>Select Additional Tag:</p>
+        <select id="secondaryTagSelect">
+          <option value="none">None</option>
+        </select>
+      </div>
       <br>
       <button id="startGameBtn">Start Game</button>
     </div>
@@ -224,7 +250,21 @@ class KeywordTransformationGame {
   checkboxes.forEach(chk => {
     chk.addEventListener("change", () => this.updateTagOptions());
   });
-  
+
+  // Attach listener for the "Add Tag?" button to toggle the secondary tag dropdown
+  document.getElementById("addTagBtn").addEventListener("click", () => {
+    const container = document.getElementById("additionalTagContainer");
+    if (container.style.display === "none") {
+      container.style.display = "block";
+      this.updateSecondaryTagOptions(); // Populate the secondary tag dropdown
+    } else {
+      container.style.display = "none";
+    }
+  });
+
+  // Attach listener to update secondary tag options when the primary tag changes
+  document.getElementById("tagSelect").addEventListener("change", () => this.updateSecondaryTagOptions());
+
   // Attach the start game button listener
   document.getElementById("startGameBtn").addEventListener("click", () => this.startGame());
   
@@ -281,35 +321,100 @@ class KeywordTransformationGame {
     });
   }
 
-  startGame() {
-    const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
-    let selectedLevels = Array.from(checkboxes)
-      .filter(chk => chk.checked)
-      .map(chk => chk.value.toLowerCase());
-    if (selectedLevels.length === 0) {
-      selectedLevels = ["b2", "c1", "c2"];
-    }
-    let filtered = this.allTransformations.filter(t => {
-      let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
-      return selectedLevels.some(level => tags.includes(level));
-    });
+  updateSecondaryTagOptions() {
+  const primaryTag = document.getElementById("tagSelect").value;
+  // If the primary tag is "all", hide the secondary dropdown.
+  if (primaryTag === "all") {
+    document.getElementById("additionalTagContainer").style.display = "none";
+    return;
+  }
+  
+  // Get the selected levels.
+  const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
+  let selectedLevels = Array.from(checkboxes)
+    .filter(chk => chk.checked)
+    .map(chk => chk.value.toLowerCase());
+  if (selectedLevels.length === 0) {
+    selectedLevels = ["b2", "c1", "c2"];
+  }
+  
+  // Filter transformations that have the primary tag.
+  let relevant = this.allTransformations.filter(t => {
+    let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
+    return selectedLevels.some(level => tags.includes(level)) &&
+           tags.includes(primaryTag.toLowerCase());
+  });
+  
+  // Build a set of additional tags from these transformations (excluding levels and the primary tag).
+  let tagSet = new Set();
+  relevant.forEach(t => {
+    t.tags.split(",")
+      .map(s => s.trim().toLowerCase())
+      .forEach(tag => {
+        if (tag && !["b2", "c1", "c2"].includes(tag) && tag !== primaryTag.toLowerCase()) {
+          tagSet.add(tag);
+        }
+      });
+  });
+  
+  const tagArray = Array.from(tagSet).sort();
+  
+  // Populate the secondary tag select element.
+  const secondarySelect = document.getElementById("secondaryTagSelect");
+  secondarySelect.innerHTML = `<option value="none">None</option>`;
+  tagArray.forEach(tag => {
+    const option = document.createElement("option");
+    option.value = tag;
+    option.textContent = tag;
+    secondarySelect.appendChild(option);
+  });
+}
 
-    const tag = document.getElementById("tagSelect").value;
-    if (tag !== "all") {
+  startGame() {
+  const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
+  let selectedLevels = Array.from(checkboxes)
+    .filter(chk => chk.checked)
+    .map(chk => chk.value.toLowerCase());
+  if (selectedLevels.length === 0) {
+    selectedLevels = ["b2", "c1", "c2"];
+  }
+  
+  let filtered = this.allTransformations.filter(t => {
+    let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
+    return selectedLevels.some(level => tags.includes(level));
+  });
+  
+  // Filter by primary tag if one is selected.
+  const primaryTag = document.getElementById("tagSelect").value;
+  if (primaryTag !== "all") {
+    filtered = filtered.filter(t => {
+      let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
+      return tags.includes(primaryTag.toLowerCase());
+    });
+  }
+  
+  // Additionally filter by the secondary tag if the dropdown is visible and a valid tag is chosen.
+  const secondarySelect = document.getElementById("secondaryTagSelect");
+  if (secondarySelect && secondarySelect.style.display !== "none") {
+    const secondaryTag = secondarySelect.value;
+    if (secondaryTag && secondaryTag !== "none") {
       filtered = filtered.filter(t => {
         let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
-        return tags.includes(tag.toLowerCase());
+        return tags.includes(secondaryTag.toLowerCase());
       });
     }
-
-    if (filtered.length === 0) {
-      alert("No transformations found for the selected filters.");
-      return;
-    }
-    this.selectedChallenges = this.shuffle(filtered).slice(0, 8);
-    this.score = 0;
-    this.initGameUI();
   }
+  
+  if (filtered.length === 0) {
+    alert("No transformations found for the selected filters.");
+    return;
+  }
+  
+  this.currentPool = filtered;
+  this.selectedChallenges = this.shuffle(filtered).slice(0, 8);
+  this.score = 0;
+  this.initGameUI();
+}
 
   initGameUI() {
     // Build HTML for each challenge, each with its own submit button.
@@ -448,6 +553,33 @@ this.selectedChallenges.forEach((challenge, index) => {
 .challenge button:active {
   transform: translateY(1px);
 }
+/* Regenerate Sentences button */
+#regenerateBtn {
+  background: linear-gradient(135deg, #80cbc4, #4db6ac);
+  color: #000;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#regenerateBtn:hover {
+  background: linear-gradient(135deg, #4db6ac, #80cbc4);
+  transform: translateY(-2px);
+}
+#regenerateBtn:active {
+  transform: translateY(1px);
+}
+
+/* Main Menu button */
+#mainMenuBtn {
+  background: linear-gradient(135deg, #80cbc4, #4db6ac);
+  color: #000;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#mainMenuBtn:hover {
+  background: linear-gradient(135deg, #4db6ac, #80cbc4);
+  transform: translateY(-2px);
+}
+#mainMenuBtn:active {
+  transform: translateY(1px);
+}
     </style>
     <div id="game-container">
       <h1>Transformation Challenge</h1>
@@ -455,6 +587,8 @@ this.selectedChallenges.forEach((challenge, index) => {
       <p>Score: <span id="score">0</span></p>
       <button id="downloadReport">Download Report</button>
       <button id="reviewMistakes">Review Mistakes</button>
+      <button id="regenerateBtn">Regenerate Sentences</button>
+      <button id="mainMenuBtn">Main Menu</button>
     </div>
   `;
 
@@ -476,6 +610,21 @@ this.selectedChallenges.forEach((challenge, index) => {
       }
     });
   });
+  // NEW LISTENERS:
+  document.getElementById("regenerateBtn").addEventListener("click", () => {
+    // This assumes that this.currentPool was saved in startGame() after filtering
+    this.selectedChallenges = this.shuffle(this.currentPool).slice(0, 8);
+    this.score = 0;
+    this.initGameUI();
+  });
+
+  document.getElementById("mainMenuBtn").addEventListener("click", () => {
+    this.initFilterUI();
+  });
+
+  // Attach listeners for downloadReport and reviewMistakes as before
+  document.getElementById("downloadReport").addEventListener("click", () => this.downloadReport());
+  document.getElementById("reviewMistakes").addEventListener("click", () => this.reviewMistakes());
 }
 
 checkAnswer(index) {
@@ -942,7 +1091,7 @@ const transformations = [
     gapFill: "I __________________ her umbrella at home this morning.",
     fullSentence: "Could Sofia have forgotten her umbrella this morning?",
     answer: ["wonder if Sofia has left", "wonder if Sofia could have left", "wonder whether Sofia has left", "wonder whether Sofia could have left"],
-    tags: "C1, modal verbs, past modals, indirect questions"
+    tags: "C1, modal verbs, past modals, indirect questions, questions"
   },
   {
     keyWord: "imposed",
@@ -1397,7 +1546,7 @@ const transformations = [
     fullSentence: "I’m sure Yara will become a famous architect one day.",
     gapFill: "I think it’s only _______________________ Yara becomes a famous architect.",
     answer: ["a matter of time before"],
-    tags: "C1, fixed phrase, future, noun phrase"
+    tags: "C1, fixed phrase, future, noun phrases"
   },
   {
     keyWord: "many",
@@ -1418,7 +1567,7 @@ const transformations = [
     fullSentence: "Camila’s parents were certain she’d become a great violinist.",
     gapFill: "Camila’s parents were _______________________ she’d become a great violinist.",
     answer: ["in no doubt", "not in any doubt", "in no doubt that", "not in any doubt that"],
-    tags: "C1, formal, fixed phrase, prepositions, noun phrase"
+    tags: "C1, formal, fixed phrase, prepositions, noun phrases"
   },
   {
     keyWord: "recollection",
@@ -1607,7 +1756,7 @@ const transformations = [
     fullSentence: "'Sorry sir, is this your wallet?' the attendant asked.",
     gapFill: "''Excuse me sir, but _______________________?' the attendant asked.",
     answer: "does this wallet belong to you",
-    tags: "C1, question forms, prepositions"
+    tags: "C1, questions, prepositions"
   },
   {
     keyWord: "notify",
@@ -1682,7 +1831,7 @@ const transformations = [
       "idea whose bracelet it might",
       "idea whose bracelet it could"
     ],
-    tags: "B2, relative clauses, indirect questions"
+    tags: "B2, relative clauses, indirect questions, questions"
   },
   {
     keyWord: "only",
@@ -1782,7 +1931,7 @@ const transformations = [
       "No point going",
       "Is not any point going"
     ],
-    tags: "B2, fixed phrases, noun phrases, prepositions"
+    tags: "B2, fixed phrase, noun phrases, prepositions"
   },
   {
     keyWord: "long",
@@ -1823,7 +1972,7 @@ const transformations = [
       "Attention to how",
       "Attention to the way"
     ],
-    tags: "B2, fixed phrases, prepositions"
+    tags: "B2, fixed phrase, prepositions"
   },
   {
     keyWord: "used",
@@ -1840,7 +1989,7 @@ const transformations = [
       "if her son could try",
       "whether her son could try"
     ],
-    tags: "B2, indirect questions, reported speech"
+    tags: "B2, indirect questions, reported speech, questions"
   },
   {
     keyWord: "warned",
@@ -1924,7 +2073,7 @@ const transformations = [
     gapFill: "The forests in this region _______________________________________ disappearing.",
     fullSentence: "They say the forests in this region are disappearing.",
     answer: ["are said to be"],
-    tags: "B2, passive voice, reporting"
+    tags: "B2, passive voice, reported speech"
   },
   {
     keyWord: "prevented",
@@ -1987,7 +2136,7 @@ const transformations = [
     gapFill: "Luca’s neighbour _______________________________________ the window.",
     fullSentence: "'Luca, you broke the window!' shouted his neighbour.",
     answer: ["accused him of breaking", "accused him of having broken"],
-    tags: "B2, reporting, gerunds and infinitives"
+    tags: "B2, reporting verbs, gerunds and infinitives, reported speech"
   },
   {
     keyWord: "paying",
@@ -2092,7 +2241,7 @@ const transformations = [
     fullSentence: "“Do you know what the problem is, Alex?” asked Priya.",
     gapFill: "Priya asked Alex ____________________________.",
     answer: ["what the problem was"],
-    tags: "B2, indirect questions, reported speech"
+    tags: "B2, indirect questions, reported speech, questions"
   },
   {
     keyWord: "put",
@@ -2332,7 +2481,7 @@ const transformations = [
       "cast light on how",
       "throw light on how"
     ],
-    tags: "C2, fixed phrase, indirect questions"
+    tags: "C2, fixed phrase, indirect questions, questions"
   },
   {
     keyWord: "TERMS",
@@ -2514,7 +2663,7 @@ const transformations = [
       "was a sharp contrast between",
       "was a clear contrast between"
     ],
-    tags: "C2, comparatives, noun phrases"
+    tags: "C2, comparatives and superlatives, noun phrases"
   },
   {
     keyWord: "CHANCE",
@@ -2685,7 +2834,7 @@ const transformations = [
       "subject to the approval of the board",
       "subject to the board's approving"
     ],
-    tags: "C2, conditionals, formal language"
+    tags: "C2, conditionals, formal"
   },
   {
     keyWord: "WHICH",
@@ -2722,7 +2871,7 @@ const transformations = [
       "drew our attention to",
       "drew our attentions to"
     ],
-    tags: "C2, phrasal verbs, idiomatic expression"
+    tags: "C2, phrasal verbs, fixed phrase"
   },
   {
     keyWord: "REMAIN",
@@ -2734,7 +2883,7 @@ const transformations = [
       "requested to remain in their seats",
       "Requested to remain seated"
     ],
-    tags: "C2, passive voice, formal instruction"
+    tags: "C2, passive voice, formal"
   },
   {
     keyWord: "DEAL",
@@ -2744,7 +2893,7 @@ const transformations = [
       "a great deal more skill than",
       "a good deal more skill than"
     ],
-    tags: "C2, comparatives, noun phrases, quantifiers"
+    tags: "C2, comparatives and superlatives, noun phrases, quantifiers"
   },
   {
     keyWord: "GO",
@@ -2796,7 +2945,7 @@ const transformations = [
       "On the verge of heading out",
       "On the verge of heading out of"
     ],
-    tags: "C2, idiomatic expressions, verb patterns"
+    tags: "C2, idioms, verb patterns"
   },
   {
     keyWord: "EXTEND",
@@ -2836,7 +2985,7 @@ const transformations = [
       "Quite unlike her to turn up",
       "Quite unlike her to show up"
     ],
-    tags: "C2, contrast, fixed phrases"
+    tags: "C2, contrast, fixed phrase"
   },
   {
     keyWord: "CALL",
@@ -2852,7 +3001,7 @@ const transformations = [
       "Little call for",
       "Very little call for"
     ],
-    tags: "C2, quantifiers, formal expressions, noun phrases"
+    tags: "C2, quantifiers, formal, noun phrases, phrasal verbs"
   },
   {
     keyWord: "RIGHT",
@@ -2864,7 +3013,7 @@ const transformations = [
       "it clear you have every right to",
       "it clear you have a right to"
     ],
-    tags: "C2, formal register, noun phrases"
+    tags: "C2, formal, noun phrases"
   },
   {
     keyWord: "GREAT",
@@ -2964,7 +3113,7 @@ const transformations = [
       "Emily's failure to respond to his proposal",
       "Emily’s failure to answer his proposal"
     ],
-    tags: "C2, noun phrases, formality, possessive"
+    tags: "C2, noun phrases, formal, possessive"
   },
   {
     keyWord: "MADE",
@@ -3143,14 +3292,14 @@ const transformations = [
     gapFill: "The first speaker ____________________________ the panel.",
     fullSentence: "From the moment he spoke, the panel were impressed by his confidence.",
     answer: ["made an instant impression on", "made an immediate impression on"],
-    tags: "C2, fixed phrase, noun phrase, formal"
+    tags: "C2, fixed phrase, noun phrases, formal"
   },
   {
     keyWord: "ease",
     gapFill: "Sam’s parents ____________________________ their warm greeting.",
     fullSentence: "Sam’s parents greeted me so warmly that I felt comfortable.",
     answer: ["put me at ease with", "made me feel at ease with"],
-    tags: "C2, idioms, verb patterns, noun phrase, prepositions"
+    tags: "C2, idioms, verb patterns, noun phrases, prepositions"
   },
   {
     keyWord: "whatsoever",
@@ -3163,8 +3312,8 @@ const transformations = [
     keyWord: "ever",
     gapFill: "Under ____________________________ with that band again.",
     fullSentence: "We’ve made it clear we won’t collaborate with that brand again — no exceptions.",
-    answer: ["no circumstances will we ever collaborate", "no circumstances whatsoever will we ever collaborate", "no circumstances will we collaborate", "no circumstances whatsoever will we collaborate"],
-    tags: "C2, inversion, fixed phrases, emphasis"
+    answer: ["no circumstances will we ever collaborate", "no circumstances whatsoever will we ever collaborate"],
+    tags: "C2, inversion, fixed phrase, emphasis"
   },
   {
     keyWord: "came",
@@ -3185,7 +3334,7 @@ const transformations = [
     gapFill: "Everyone ____________________________ the president’s arrest.",
     fullSentence: "The announcement that the president had been arrested was a great shock.",
     answer: ["was taken aback by the announcement of", "was taken aback at the announcement of"],
-    tags: "C2, passive, idiomatic expression, news reporting"
+    tags: "C2, passive voice, phrasal verbs, noun phrases"
   },
   {
     keyWord: "it",
@@ -3242,7 +3391,7 @@ const transformations = [
     gapFill: "Sonia is ____________________________ than as a poet.",
     fullSentence: "Most people know more about Sonia’s journalism than her poetry.",
     answer: ["better known as a journalist", "better known as a writer"],
-    tags: "C2, comparison, passive voice, noun phrases, prepositions"
+    tags: "C2, comparatives and superlatives, passive voice, noun phrases, prepositions"
   },
   {
     keyWord: "brought",
