@@ -154,6 +154,22 @@ class KeywordTransformationGame {
         box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         margin-top: 5%;
       }
+      /* New title container to fit the game box */
+      #title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      #menu-image {
+        max-width: 75%; /* Scales with the container */
+        height: auto;
+      }
+      #title-container h1 {
+        font-size: 2em; /* Adjust as needed */
+        margin-top: 10px;
+      }
       #filter-container h1 {
         margin-bottom: 20px;
         font-size: 2em;
@@ -244,7 +260,11 @@ class KeywordTransformationGame {
 }
     </style>
     <div id="filter-container">
-      <h1>Keyword Transformation Game</h1>
+      <!-- Title container with image and title text -->
+      <div id="title-container">
+        <img id="menu-image" src="images/key-puzzle.png" alt="Keyword Transformation Game">
+      </div>
+
       <p>Select Level(s):</p>
       <div id="levelCheckboxes">
         <label><input type="checkbox" value="B2" checked> B2</label>
