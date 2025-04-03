@@ -1,3 +1,34 @@
+// Firebase initialization (using ES modules)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import { 
+  getFirestore, 
+  addDoc, 
+  collection, 
+  serverTimestamp, 
+  getDoc, 
+  doc 
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+// Optionally, import analytics if needed
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBpUNy_xjg9IE6K9CIPlYA-f26YuhNQD9c",
+  authDomain: "key-word-compiler.firebaseapp.com",
+  projectId: "key-word-compiler",
+  storageBucket: "key-word-compiler.firebasestorage.app",
+  messagingSenderId: "101672648997",
+  appId: "1:101672648997:web:908397d03fcebb548f1acc",
+  measurementId: "G-QK0FWQQYHV"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app); // Now you have access to Firestore
+const analytics = getAnalytics(app); // Optional, if you're using analytics
+
+loadScript("https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js", () => {
+  console.log("QRCode library loaded!");
+});
+
 // Utility functions
 function loadScript(url, callback) {
   const script = document.createElement("script");
@@ -25,12 +56,6 @@ function addCustomSelect2Styles() {
   // No custom styles needed for plain dropdown.
 }
 
-function loadScript(url, callback) {
-  const script = document.createElement("script");
-  script.src = url;
-  script.onload = callback;
-  document.head.appendChild(script);
-}
 
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js", () => {
   loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js", () => {
@@ -423,6 +448,84 @@ class KeywordTransformationGame {
   this.initGameUI();
 }
 
+shareSet() {
+  // Get the current set of challenges to share
+  const setToShare = this.selectedChallenges;
+
+  // Add the set to Firestore
+  addDoc(collection(db, "sharedSets"), {
+    set: setToShare,
+    createdAt: serverTimestamp()
+  })
+  .then(docRef => {
+    // Construct the shareable URL
+    const shareUrl = `${window.location.origin}${window.location.pathname}?shareId=${docRef.id}`;
+
+    // Get the container for the QR code and link
+    const qrContainer = document.getElementById("qrCodeContainer");
+    // Clear any previous content
+    qrContainer.innerHTML = "";
+
+    // Create a styled box for the QR code, centered content
+    qrContainer.insertAdjacentHTML('beforeend', `
+      <div style="
+        margin-top: 20px; 
+        padding: 20px; 
+        background-color: rgba(0, 0, 0, 0.7); 
+        border-radius: 10px; 
+        text-align: center;
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      ">
+        <p style="font-size:1.2em; margin-bottom: 10px;">
+          Scan this QR code to play the set:
+        </p>
+        <div id="qrCodeBox" style="display: inline-block;"></div>
+        <p style="margin-top: 10px; font-size:14px;">
+          <a href="${shareUrl}" target="_blank" style="color: white; text-decoration: underline;">
+            ${shareUrl}
+          </a>
+        </p>
+      </div>
+    `);
+
+    // Now generate the QR code inside the #qrCodeBox
+    const qrCodeBox = document.getElementById("qrCodeBox");
+    new QRCode(qrCodeBox, {
+      text: shareUrl,
+      width: 128,
+      height: 128
+    });
+  })
+  .catch(error => {
+    console.error("Error sharing set: ", error);
+  });
+}
+
+
+  checkForSharedSet() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const shareId = urlParams.get('shareId');
+  if (shareId) {
+    getDoc(doc(db, "sharedSets", shareId))
+      .then(docSnap => {
+        if (docSnap.exists()) {
+          const sharedSet = docSnap.data().set;
+          console.log("Shared set:", sharedSet);
+          // For example, you might want to instantiate your game with this set:
+          this.selectedChallenges = sharedSet;
+          this.initGameUI();
+        } else {
+          console.log("No shared set found with this ID.");
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching shared set: ", error);
+      });
+  }
+}
+
   initGameUI() {
     // Build HTML for each challenge, each with its own submit button.
     let challengesHTML = "";
@@ -560,33 +663,36 @@ this.selectedChallenges.forEach((challenge, index) => {
 .challenge button:active {
   transform: translateY(1px);
 }
-/* Regenerate Sentences button */
-#regenerateBtn {
-  background: linear-gradient(135deg, #80cbc4, #4db6ac);
-  color: #000;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-#regenerateBtn:hover {
-  background: linear-gradient(135deg, #4db6ac, #80cbc4);
-  transform: translateY(-2px);
-}
-#regenerateBtn:active {
-  transform: translateY(1px);
-}
-
-/* Main Menu button */
+#regenerateBtn,
 #mainMenuBtn {
-  background: linear-gradient(135deg, #80cbc4, #4db6ac);
+  background: linear-gradient(135deg, #FFA500, #FFD700);
   color: #000;
   transition: background 0.3s ease, transform 0.2s ease;
 }
+#regenerateBtn:hover,
 #mainMenuBtn:hover {
-  background: linear-gradient(135deg, #4db6ac, #80cbc4);
+  background: linear-gradient(135deg, #FFD700, #FFA500);
   transform: translateY(-2px);
 }
+#regenerateBtn:active,
 #mainMenuBtn:active {
   transform: translateY(1px);
 }
+/* Share Set button - a playful pink–purple surprise! */
+#shareSetBtn {
+  background: linear-gradient(135deg, #FF69B4, #8A2BE2);
+  color: #fff;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#shareSetBtn:hover {
+  background: linear-gradient(135deg, #8A2BE2, #FF69B4);
+  transform: translateY(-2px);
+}
+#shareSetBtn:active {
+  transform: translateY(1px);
+}
+// In the UI markup (inside your game container, along with your other buttons)
+<button id="shareSetBtn">Share Set</button>
     </style>
     <div id="game-container">
       <h1>Transformation Challenge</h1>
@@ -596,6 +702,9 @@ this.selectedChallenges.forEach((challenge, index) => {
       <button id="reviewMistakes">Review Mistakes</button>
       <button id="regenerateBtn">Regenerate Sentences</button>
       <button id="mainMenuBtn">Main Menu</button>
+      <button id="shareSetBtn">Share Set</button>
+      <!-- Container for the QR Code -->
+      <div id="qrCodeContainer" style="margin-top:20px;"></div>
     </div>
   `;
 
@@ -627,6 +736,11 @@ this.selectedChallenges.forEach((challenge, index) => {
 
   document.getElementById("mainMenuBtn").addEventListener("click", () => {
     this.initFilterUI();
+  });
+
+  // NEW: Add the event listener for the Share Set button.
+  document.getElementById("shareSetBtn").addEventListener("click", () => {
+    this.shareSet();
   });
 
   // Attach listeners for downloadReport and reviewMistakes as before
@@ -3416,3 +3530,4 @@ transformations.forEach(obj => {
 });
 
 const game = new KeywordTransformationGame(transformations);
+game.checkForSharedSet();
