@@ -271,55 +271,62 @@ class KeywordTransformationGame {
   // Initialize the tag options
   this.updateTagOptions();
   
-  // Add event listener for tag search filtering
   document.getElementById("tagSearch").addEventListener("input", function() {
-    const filter = this.value.toLowerCase();
-    const select = document.getElementById("tagSelect");
-    for (let i = 0; i < select.options.length; i++) {
-      const option = select.options[i];
-      if (option.value === "all") {
-        option.style.display = "block";
-      } else {
-        option.style.display = option.textContent.toLowerCase().includes(filter) ? "block" : "none";
-      }
-    }
-  });
-}
-
-  updateTagOptions() {
-    const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
-    let selectedLevels = Array.from(checkboxes)
-      .filter(chk => chk.checked)
-      .map(chk => chk.value.toLowerCase());
-    if (selectedLevels.length === 0) {
-      selectedLevels = ["b2", "c1", "c2"];
-    }
-
-    // Filter transformations based on selected levels
-    let relevant = this.allTransformations.filter(t => {
-      let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
-      return selectedLevels.some(level => tags.includes(level));
-    });
-
-    // Build a set of non-level tags
-    let tagSet = new Set();
-    relevant.forEach(t => {
-      t.tags.split(",")
-        .map(s => s.trim().toLowerCase())
-        .filter(s => s && !["b2", "c1", "c2"].includes(s))
-        .forEach(tag => tagSet.add(tag));
-    });
-
-    const tagArray = Array.from(tagSet).sort();
-    const tagSelect = document.getElementById("tagSelect");
-    tagSelect.innerHTML = `<option value="all">All Tags</option>`;
-    tagArray.forEach(tag => {
+  const filter = this.value.toLowerCase();
+  const tagSelect = document.getElementById("tagSelect");
+  // Rebuild the options list using the full tag array
+  tagSelect.innerHTML = `<option value="all">All Tags</option>`;
+  // Use the stored array from the game instance; assuming "game" is your instance
+  const fullTags = game.fullTagArray || [];
+  fullTags.forEach(tag => {
+    if (tag.toLowerCase().includes(filter)) {
       const option = document.createElement("option");
       option.value = tag;
       option.textContent = tag;
       tagSelect.appendChild(option);
-    });
+    }
+  });
+});
+}
+
+  updateTagOptions() {
+  const checkboxes = document.querySelectorAll("#levelCheckboxes input[type='checkbox']");
+  let selectedLevels = Array.from(checkboxes)
+    .filter(chk => chk.checked)
+    .map(chk => chk.value.toLowerCase());
+  if (selectedLevels.length === 0) {
+    selectedLevels = ["b2", "c1", "c2"];
   }
+
+  // Filter transformations based on selected levels
+  let relevant = this.allTransformations.filter(t => {
+    let tags = t.tags.split(",").map(s => s.trim().toLowerCase());
+    return selectedLevels.some(level => tags.includes(level));
+  });
+
+  // Build a set of non-level tags
+  let tagSet = new Set();
+  relevant.forEach(t => {
+    t.tags.split(",")
+      .map(s => s.trim().toLowerCase())
+      .filter(s => s && !["b2", "c1", "c2"].includes(s))
+      .forEach(tag => tagSet.add(tag));
+  });
+
+  const tagArray = Array.from(tagSet).sort();
+
+  // Step 1: Save the full tag array for later use
+  this.fullTagArray = tagArray;
+
+  const tagSelect = document.getElementById("tagSelect");
+  tagSelect.innerHTML = `<option value="all">All Tags</option>`;
+  tagArray.forEach(tag => {
+    const option = document.createElement("option");
+    option.value = tag;
+    option.textContent = tag;
+    tagSelect.appendChild(option);
+  });
+}
 
   updateSecondaryTagOptions() {
   const primaryTag = document.getElementById("tagSelect").value;
