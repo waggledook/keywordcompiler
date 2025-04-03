@@ -615,6 +615,18 @@ shareSet() {
         padding: 20px;
         border-radius: 10px;
       }
+      /* Title container styling matching the main title page */
+      #title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1px;
+      }
+      #challenge-image {
+        max-width: 70%; /* Ensures the image scales with the container */
+        height: auto;
+      }
       input, button {
         padding: 10px;
         font-size: 16px;
@@ -724,7 +736,10 @@ shareSet() {
 <button id="shareSetBtn">Share Set</button>
     </style>
     <div id="game-container">
-      <h1>Transformation Challenge</h1>
+      <!-- Title container with the new image fixed to the game box -->
+      <div id="title-container">
+        <img id="challenge-image" src="images/key-puzzle-challenge.png" alt="Transformation Challenge">
+      </div>
       ${challengesHTML}
       <p>Score: <span id="score">0</span></p>
       <button id="downloadReport">Download Report</button>
