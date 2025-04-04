@@ -1249,7 +1249,7 @@ const transformations = [
     gapFill: "The meals in that restaurant are __________________ pay for.",
     fullSentence: "Olivia couldn’t possibly afford any of the meals in that restaurant.",
     answer: "far too expensive for Olivia to",
-    tags: "C1, comparatives and superlatives"
+    tags: "C1, comparatives and superlatives, intensifiers"
   },
   {
     keyWord: "wonder",
@@ -1340,7 +1340,7 @@ const transformations = [
     "gapFill": "Much to _____________________ selected for the scholarship.",
     "fullSentence": "Ivy was thrilled to be selected for the scholarship.",
     "answer": ["her delight, Ivy was", "Ivy's delight, she was"],
-    "tags": "C1, fronting"
+    "tags": "C1, fronting, intensifiers"
   },
   {
     "keyWord": "result",
@@ -1421,10 +1421,10 @@ const transformations = [
   },
   {
     "keyWord": "so",
-    "gapFill": "Jay’s startup was _____________________ during its first year.",
+    "gapFill": "Jay’s startup _____________________ during its first year.",
     "fullSentence": "Jay’s startup didn’t achieve much success during its first year.",
-    "answer": "not so successful",
-    "tags": "C1, comparatives and superlatives"
+    "answer": "was not so successful",
+    "tags": "C1, comparatives and superlatives, intensifiers"
   },
   {
     "keyWord": "should",
@@ -1613,21 +1613,21 @@ const transformations = [
     fullSentence: "The sculpture is so well preserved that it’s difficult to believe it's over 500 years old.",
     gapFill: "The sculpture is in such good _______________________ believe it’s over 500 years old.",
     answer: ["condition that it is hard to", "condition it is hard to"],
-    tags: "C1, fixed phrase, noun phrases"
+    tags: "C1, fixed phrase, noun phrases, intensifiers"
   },
   {
     keyWord: "single",
     fullSentence: "By the time we got to the bakery, all the bread had gone.",
     gapFill: "By the time we got to the bakery, there _______________________ loaf left.",
     answer: ["was not a single", "was not one single"],
-    tags: "C1, quantifiers, exceptions"
+    tags: "C1, quantifiers, exceptions, intensifiers"
   },
   {
     keyWord: "so",
     fullSentence: "The performance was too loud for us to stay until the end.",
     gapFill: "If _______________________ noise, we might have stayed until the end of the performance.",
     answer: "there had not been so much",
-    tags: "C1, conditionals"
+    tags: "C1, conditionals, intensifiers"
   },
   {
     keyWord: "fall",
@@ -2217,7 +2217,7 @@ const transformations = [
     gapFill: "The instructions were _______________________________________ the students to follow.",
     fullSentence: "The instructions were so tricky that none of the students could follow them.",
     answer: ["too complicated for", "too tricky for"],
-    tags: "B2, quantifiers, prepositions"
+    tags: "B2, quantifiers, prepositions, intensifiers"
   },
   {
     keyWord: "mean",
@@ -2607,6 +2607,258 @@ const transformations = [
     gapFill: "I ____________________________ the safety guidelines.",
     answer: ["had trouble understanding"],
     tags: "B2, Gerunds and infinitives, fixed phrase, noun phrases"
+  },
+  {
+    keyWord: "IT",
+    fullSentence: "Lara was so nervous she had difficulty following the examiner’s instructions.",
+    gapFill: "Lara was so nervous she ................................................ the examiner’s instructions.",
+    answer: ["found it hard to follow", "found it difficult to follow", "found it tough to follow"],
+    tags: "B2, fixed phrase, verb patterns"
+  },
+  {
+    keyWord: "PUT",
+    fullSentence: "They have postponed the concert and it will now happen next month.",
+    gapFill: "The concert ................................................ until next month.",
+    answer: ["has been put off", "'s been put off"],
+    tags: "B2, phrasal verbs, passive voice, verbs forms"
+  },
+  {
+    keyWord: "INTENTION",
+    fullSentence: "I don’t plan on playing with Marcus again.",
+    gapFill: "I’ve got ................................................ with Marcus again.",
+    answer: ["no intention of playing", "little intention of playing"],
+    tags: "B2, noun phrase, verb pattern (preposition + -ing)"
+  },
+  {
+    keyWord: "HAVE",
+    fullSentence: "It seems a short circuit caused the explosion.",
+    gapFill: "The explosion ................................................ by a short circuit.",
+    answer: "seems to have been caused",
+    tags: "B2, passive voice, perfect, speculation"
+  },
+  {
+    keyWord: "POINT",
+    fullSentence: "The town was dead in winter, so it wasn’t worth going out.",
+    gapFill: "The town was dead in winter, so................................................ going out.",
+    answer: ["there was no point in", "there was little point in", "there was no point", "there was little point", "there was not any point"],
+    tags: "B2, fixed phrase, verb patterns, noun phrases"
+  },
+  {
+    keyWord: "HAVE",
+    fullSentence: "I called the doctor, but they told me I didn’t need an appointment.",
+    gapFill: "I called the doctor, but they said I ................................................ an appointment.",
+    answer: "did not have to make",
+    tags: "B2, modal verbs, obligation, reported speech"
+  },
+  {
+    keyWord: "LONG",
+    fullSentence: "“I’ll take you to the airport if you’re packed,” said Jake.",
+    gapFill: "Jake said he’d take me to the airport ................................................ packed.",
+    answer: ["as long as I was", "so long as I was", "as long as I had", "so long as I had"],
+    tags: "B2, conditionals, reported speech, linking"
+  },
+  {
+    keyWord: "GET",
+    fullSentence: "My phone needs to be fixed again.",
+    gapFill: "I’ll have to ................................................ again.",
+    answer: ["get my phone fixed", "get my phone repaired", "get my phone mended"],
+    tags: "B2, causative, passive voice"
+  },
+  {
+    keyWord: "FALL",
+    fullSentence: "Sales decreased because of the pandemic, the company said.",
+    gapFill: "The company blamed the ................................................ the pandemic.",
+    answer: "fall in sales on",
+    tags: "B2, noun phrase, prepositions, reporting verbs, reported speech"
+  },
+  {
+    keyWord: "WISHED",
+    fullSentence: "Ellie regretted wasting so much time online.",
+    gapFill: "Ellie ................................................ so much time online.",
+    answer: "wished she had not wasted",
+    tags: "B2, wish, past perfect, verb forms, unreal forms"
+  },
+  {
+    keyWord: "HAVE",
+    fullSentence: "People think the song was about his childhood.",
+    gapFill: "That song ................................................written about his childhood.",
+    answer: ["is thought to have been", "is believed to have been"],
+    tags: "B2, passive voice, reported speech, perfect"
+  },
+  {
+    keyWord: "BEEN",
+    fullSentence: "I couldn’t have passed the exam if you hadn’t helped.",
+    gapFill: "I wouldn’t have passed the exam if ................................................ your help.",
+    answer: "it had not been for",
+    tags: "B2, unreal conditional, fixed expression (if it hadn’t been for)"
+  },
+  {
+    keyWord: "WERE",
+    fullSentence: "The platoon left almost no soldiers behind.",
+    gapFill: "Hardly................................................ by the platoon.",
+    answer: ["any soldiers were left behind", "any soldiers were abandoned"],
+    tags: "B2, passive voice, quantifiers, emphasis"
+  },
+  {
+    keyWord: "HOW",
+    fullSentence: "“What’s the height of that mountain?” She asked.",
+    gapFill: "She asked ................................................ was.",
+    answer: "how high the mountain",
+    tags: "B2, indirect questions, questions, reported speech"
+  },
+  {
+    keyWord: "MUCH",
+    fullSentence: "This sofa is almost the same as the one we saw yesterday.",
+    gapFill: "There isn’t ................................................ this sofa and the one we saw yesterday.",
+    answer: "much difference between",
+    tags: "B2, comparatives and superlatives, noun phrases"
+  },
+  {
+    keyWord: "WAS",
+    fullSentence: "Maria wouldn’t apologise for shouting at us.",
+    gapFill: "Maria refused to................................................ shouting at us.",
+    answer: "say she was sorry for",
+    tags: "B2, reporting verbs, verb forms, prepositions, reported speech"
+  },
+  {
+    keyWord: "FIND",
+    fullSentence: "This town’s restaurants are what visitors enjoy the most.",
+    gapFill: "What most visitors ................................................ this town is its restaurants.",
+    answer: "find most enjoyable about",
+    tags: "B2, verb patterns, fixed phrase, cleft sentences, comparatives and superlatives"
+  },
+  {
+    keyWord: "SUCCEED",
+    fullSentence: "Our team probably won’t manage to get the grant.",
+    gapFill: "Our team is unlikely to ................................................ the grant.",
+    answer: ["succeed in getting", "succeed in obtaining"],
+    tags: "B2, verb patterns, gerunds and infinitives, probability, speculation"
+  },
+  {
+    keyWord: "BEEN",
+    fullSentence: "We last spoke on the phone two years ago.",
+    gapFill: "It’s ................................................ we last spoke on the phone.",
+    answer: "been two years since",
+    tags: "B2, time expressions, present perfect, verb forms"
+  },
+  {
+    keyWord: "ACCUSED",
+    fullSentence: "“You weren’t honest with me,” Anna told Paul.",
+    gapFill: "Anna ................................................ honest with her.",
+    answer: "accused Paul of not being",
+    tags: "B2, reporting verbs, verb patterns, reported speech, prepositions"
+  },
+  {
+    keyWord: "LATE",
+    fullSentence: "You really ought to get to the interview on time.",
+    gapFill: "I strongly advise you................................................ for the interview.",
+    answer: ["not to be late", "not to arrive late"],
+    tags: "B2, reporting verbs, verb forms, gerunds and infinitives"
+  },
+  {
+    keyWord: "SPITE",
+    fullSentence: "We managed to win the race, even though we weren’t well prepared.",
+    gapFill: "We won the race ................................................ badly prepared.",
+    answer: ["in spite of being", "in spite of having been"],
+    tags: "B2, concession, prepositions, linking, contrast"
+  },
+  {
+    keyWord: "FLY",
+    fullSentence: "The journey to Barcelona lasts two hours by plane.",
+    gapFill: "It ................................................ to Barcelona.",
+    answer: "takes two hours to fly",
+    tags: "B2, verb forms, time expressions, gerunds and infinitives"
+  },
+  {
+    keyWord: "SUCH",
+    fullSentence: "I didn’t know the hotel was that far from the station.",
+    gapFill: "I didn’t know the hotel ................................................ way from the station.",
+    answer: "was such a long",
+    tags: "B2, emphasis, noun phrases, intensifiers"
+  },
+  {
+    keyWord: "HAVE",
+    fullSentence: "Dan missed the bus because he didn’t leave on time.",
+    gapFill: "If Dan had left on time, he would ................................................ bus.",
+    answer: "not have missed the",
+    tags: "B2, conditionals, past modals, modal verbs"
+  },
+  {
+    keyWord: "NEARLY",
+    fullSentence: "None of the other apps perform better than this one.",
+    gapFill: "The other apps don’t work ................................................ this one.",
+    answer: "nearly as well as",
+    tags: "B2, comparatives and superlatives, emphasis, intensifiers"
+  },
+  {
+    keyWord: "WHETHER",
+    fullSentence: "“Could I use your laptop for a second?” Mia asked Ben.",
+    gapFill: "Mia asked Ben ................................................ his laptop for a second.",
+    answer: "whether she could use",
+    tags: "B2, reported speech, questions, indirect questions, modal verbs"
+  },
+  {
+    keyWord: "SUCH",
+    fullSentence: "Lucas show so much talent as a photographer—his pictures look unreal.",
+    gapFill: "Lucas is ................................................ photographer that his pictures look unreal.",
+    answer: "such a talented",
+    tags: "B2, emphasis, noun phrases, intensifiers"
+  },
+  {
+    keyWord: "NOT",
+    fullSentence: "I wish I hadn’t drunk so much at the weekend.",
+    gapFill: "I should ................................................ at the weekend.",
+    answer: "not have drunk so much",
+    tags: "B2, advice, past modals, quantifiers, modal verbs, wish"
+  },
+  {
+    keyWord: "CAUSED",
+    fullSentence: "The train was delayed because a signal failed.",
+    gapFill: "The train’s delay ................................................ signal failure.",
+    answer: ["was caused by a", "was caused by the"],
+    tags: "B2, causality, verb forms, passive voice"
+  },
+  {
+    keyWord: "INVITED",
+    fullSentence: "“Do you want to go to my presentation, Leo?” asked Mia.",
+    gapFill: "Mia ................................................ presentation.",
+    answer: "invited Leo to her",
+    tags: "B2, reporting verbs, verb patterns, reported speech"
+  },
+  {
+    keyWord: "PAID",
+    fullSentence: "Several drivers ignored the roadwork signs.",
+    gapFill: "Several drivers ................................................ the roadwork signs.",
+    answer: ["paid no attention to", "paid little attention to"],
+    tags: "B2, fixed phrase, verb forms, noun phrases"
+  },
+  {
+    keyWord: "NOT",
+    fullSentence: "The volunteers had too little water for all the hikers.",
+    gapFill: "There ................................................ the volunteers to give to all the hikers.",
+    answer: ["was not enough water for", "was not sufficient water for"],
+    tags: "B2, quantifiers, noun phrases, prepositions"
+  },
+  {
+    keyWord: "ONLY",
+    fullSentence: "Eva gets no exercise other than cycling to school.",
+    gapFill: "The ................................................  cycling to school.",
+    answer: ["only exercise Eva gets is", "only exercise Eva does is"],
+    tags: "B2, noun phrases, emphasis, cleft sentences"
+  },
+  {
+    keyWord: "GAVE",
+    fullSentence: "Leo wanted to start painting so he quit his job as a coach.",
+    gapFill: "Leo ................................................ become a painter.",
+    answer: ["gave up coaching to", "gave coaching up to"],
+    tags: "B2, phrasal verbs, verb patterns, gerunds and infinitives"
+  },
+  {
+    keyWord: "NEARLY",
+    fullSentence: "There’s far less pollution in Madrid than there once was.",
+    gapFill: "There isn’t ................................................ Madrid as there used to be.",
+    answer: "nearly as much pollution in",
+    tags: "B2, comparatives and superlatives, quantifiers, intensifiers"
   },
   {
     keyWord: "ACCOUNT",
