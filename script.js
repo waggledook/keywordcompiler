@@ -591,7 +591,7 @@ shareSet() {
 
         <!-- Removed the "Expected answer length" line entirely -->
 
-        <input type="text" id="answer-${index}" placeholder="Enter missing words">
+        <input type="text" id="answer-${index}" placeholder="Enter missing words" autocomplete="off">
         <button id="submit-${index}">Submit Answer</button>
         <p id="feedback-${index}" style="margin:5px 0;"></p>
       </div>
@@ -885,146 +885,132 @@ reviewMistakes() {
     return;
   }
   
-  // Build HTML for each mistake challenge
   let reviewHTML = "";
+  
+  // Build the HTML for each mistaken challenge, using the same style as initGameUI
   mistakes.forEach((challenge, index) => {
-    // Highlight key word in the full sentence
+    // Highlight the key word in the full sentence
     let highlightedFull = challenge.fullSentence.replace(
       new RegExp(`\\b(${challenge.keyWord})\\b`, "i"),
       `<span class="highlight">$1</span>`
     );
-  
-    // Determine level and expected word count (as before)
+    
+    // Determine level from tags and build the display string
     let levelTag = challenge.tags
       .split(",")
       .map(s => s.trim().toLowerCase())
-      .find(t => t === "c1" || t === "b2" || t === "c2");
-  
-    let expectedLength = "";
-    if (levelTag === "c1") {
-      expectedLength = "3-7 words";
-    } else if (levelTag === "b2") {
-      expectedLength = "2-5 words";
+      .find(t => t === "b2" || t === "c1" || t === "c2");
+    let displayLevel = "";
+    if (levelTag === "b2") {
+      displayLevel = "B2: 2-5 words";
+    } else if (levelTag === "c1") {
+      displayLevel = "C1: 3-7 words";
     } else if (levelTag === "c2") {
-      expectedLength = "3-8 words";
+      displayLevel = "C2: 3-8 words";
     }
-  
+    
     reviewHTML += `
       <div class="challenge" style="margin-bottom:20px; padding:10px; background: rgba(0,0,0,0.6); border-radius:5px;">
-        <p class="fullSentence">Full sentence: ${highlightedFull}</p>
+        <p class="fullSentence">${highlightedFull}</p>
         <p class="keyword" style="font-size:1.5em; font-weight:bold;">
-           <span class="keyword-label" style="color: #235a8c;">Key word:</span>
-           <span class="keyword-value" style="color: #FFD700;"> ${challenge.keyWord.toLowerCase()}</span>
+          <span class="keyword-label" style="color: #235a8c;">Key word:</span>
+          <span class="keyword-value" style="color: #FFD700;">${challenge.keyWord.toLowerCase()}</span>
         </p>
-        <p class="gapFillPrompt">Fill in the blank: ${challenge.gapFill}</p>
-        <p class="word-spec" style="color: #FF5733;">Expected answer length: ${expectedLength}</p>
-        <input type="text" id="review-answer-${index}" placeholder="Enter missing words">
+        <p class="gapFillPrompt">
+          ${challenge.gapFill} <strong style="color: #FF5733;">(${displayLevel})</strong>
+        </p>
+        <input type="text" id="review-answer-${index}" placeholder="Enter missing words" autocomplete="off">
         <button id="review-submit-${index}">Submit Answer</button>
         <p id="review-feedback-${index}" style="margin:5px 0;"></p>
       </div>
     `;
   });
   
-  // Render the review UI. (We include a "Back" button to return to the main UI and the Download Report button.)
+  // Render the review UI in a container that mimics the main game UI style.
   document.body.innerHTML = `
-  <style>
-    /* Reuse the same button styles as the game UI */
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #2E3192, #1BFFFF);
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    #review-container {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(0,0,0,0.8);
-      padding: 20px;
-      border-radius: 10px;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin: 10px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
-    input[type="text"] {
-      width: 80%;
-    }
-    .highlight {
-      font-weight: bold;
-      color: #FFD700;
-    }
-    .submitted-correct {
-      background-color: #d4edda;
-      color: #155724;
-    }
-    .submitted-incorrect {
-      background-color: #f8d7da;
-      color: #721c24;
-    }
-    .correct-feedback {
-      font-weight: bold;
-      color: green;
-    }
-    .incorrect-feedback {
-      font-weight: bold;
-      color: red;
-    }
-    /* Download Report button (if present) */
-    #downloadReport {
-      background: linear-gradient(135deg, #FFA500, #FFD700);
-      color: #000;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    #downloadReport:hover {
-      background: linear-gradient(135deg, #FFD700, #FFA500);
-      transform: translateY(-2px);
-    }
-    #downloadReport:active {
-      transform: translateY(1px);
-    }
-    /* Review screen submit buttons */
-    #backToMain, #downloadReport {
-      /* You might want to ensure these buttons also follow the same style */
-      background: linear-gradient(135deg, #32CD32, #228B22);
-      color: #fff;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    #backToMain:hover, #downloadReport:hover {
-      background: linear-gradient(135deg, #228B22, #32CD32);
-      transform: translateY(-2px);
-    }
-    #backToMain:active, #downloadReport:active {
-      transform: translateY(1px);
-    }
-    /* And the challenge submit buttons in the review screen */
-    .challenge button {
-      background: linear-gradient(135deg, #80cbc4, #4db6ac); /* same softer teal tones */
-      color: #000;
-      transition: background 0.3s ease, transform 0.2s ease;
-    }
-    .challenge button:hover {
-      background: linear-gradient(135deg, #4db6ac, #80cbc4);
-      transform: translateY(-2px);
-    }
-    .challenge button:active {
-      transform: translateY(1px);
-    }
-  </style>
-  <div id="review-container">
-    <h1>Review Mistakes</h1>
-    ${reviewHTML}
-    <button id="backToMain">Back</button>
-    <button id="downloadReport">Download Report</button>
-  </div>
-`;
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #2E3192, #1BFFFF);
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+      #review-container {
+        max-width: 600px;
+        margin: auto;
+        background: rgba(0,0,0,0.8);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      input, button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="text"] {
+        width: 80%;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #FFD700;
+      }
+      .submitted-correct {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      .submitted-incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+      .correct-feedback {
+        font-weight: bold;
+        color: green;
+      }
+      .incorrect-feedback {
+        font-weight: bold;
+        color: red;
+      }
+      /* Buttons for navigation */
+      #backToMain, #downloadReport {
+        background: linear-gradient(135deg, #32CD32, #228B22);
+        color: #fff;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+      #backToMain:hover, #downloadReport:hover {
+        background: linear-gradient(135deg, #228B22, #32CD32);
+        transform: translateY(-2px);
+      }
+      #backToMain:active, #downloadReport:active {
+        transform: translateY(1px);
+      }
+      /* Style for review challenge submit buttons */
+      .challenge button {
+        background: linear-gradient(135deg, #80cbc4, #4db6ac);
+        color: #000;
+        transition: background 0.3s ease, transform 0.2s ease;
+      }
+      .challenge button:hover {
+        background: linear-gradient(135deg, #4db6ac, #80cbc4);
+        transform: translateY(-2px);
+      }
+      .challenge button:active {
+        transform: translateY(1px);
+      }
+    </style>
+    <div id="review-container">
+      <h1>Review Mistakes</h1>
+      ${reviewHTML}
+      <button id="backToMain">Back</button>
+      <button id="downloadReport">Download Report</button>
+    </div>
+  `;
   
-  // Attach event listeners for each review challenge's submit button using a separate check method.
+  // Attach event listeners for each review challenge's submit button
   mistakes.forEach((challenge, index) => {
     const submitBtn = document.getElementById(`review-submit-${index}`);
     const inputEl = document.getElementById(`review-answer-${index}`);
@@ -1037,7 +1023,7 @@ reviewMistakes() {
     });
   });
   
-  // "Back" button returns to the main game UI (the original report remains unchanged)
+  // Attach listeners for navigation buttons
   document.getElementById("backToMain").addEventListener("click", () => this.initGameUI());
   document.getElementById("downloadReport").addEventListener("click", () => this.downloadReport());
 }
