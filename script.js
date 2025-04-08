@@ -2943,7 +2943,7 @@ const transformations = [
       "extinguished extent of the destruction",
       "out the extent of the destruction"
     ],
-    tags: "C2, cleft sentence, time expressions"
+    tags: "C2, cleft sentences, time expressions"
   },
   {
     keyWord: "DAWN",
@@ -3765,7 +3765,7 @@ const transformations = [
     gapFill: "Finn told his mother that what he ____________________________ of hers.",
     fullSentence: "‘What I choose to do with my time is none of your business!’ Finn said to his mother.",
     answer: ["did with his time was no concern", "was doing with his time was no concern"],
-    tags: "C2, reported speech, noun phrases, cleft sentence, emphasis"
+    tags: "C2, reported speech, noun phrases, cleft sentences, emphasis"
   },
   {
     keyWord: "point",
@@ -3816,6 +3816,331 @@ const transformations = [
     fullSentence: "I've just been informed you’ve missed every deadline this month.",
     answer: ["has been brought to my attention", "has just been brought to my attention"],
     tags: "C2, passive voice, formal, present perfect, noun phrases"
+  },
+  {
+    keyWord: "complete",
+    gapFill: "There was _________________________ the two directors.",
+    fullSentence: "The two directors didn’t trust each other in any way.",
+    answer: [
+      "complete distrust between",
+      "a complete lack of trust between",
+      "a complete absence of trust",
+      "complete mistrust between"
+    ],
+    tags: "C2, noun phrases, emphasis, quantifiers"
+  },
+  {
+    keyWord: "reference",
+    gapFill: "In her memoirs, the actress _________________________ of her drama coach.",
+    fullSentence: "In her memoirs, the actress didn’t acknowledge the impact of her drama coach.",
+    answer: [
+      "made no reference to the impact",
+      "did not make any reference to the impact"
+    ],
+    tags: "C2, noun phrases, reporting, prepositions"
+  },
+  {
+    keyWord: "event",
+    gapFill: "The celebration _________________________ his party’s victory.",
+    fullSentence: "If his party wins, they will hold the celebration indoors.",
+    answer: [
+      "will be held indoors in the event of",
+      "will take place indoors in the event of"
+    ],
+    tags: "C2, conditionals, formal, prepositions, linking"
+  },
+  {
+    keyWord: "arrival",
+    gapFill: "Maya took _________________________ at the party.",
+    fullSentence: "We were surprised when Maya arrived suddenly at the party",
+    answer: [
+      "us by surprise with her sudden arrival",
+      "us by surprise by her sudden arrival"
+    ],
+    tags: "C2, fixed phrase, noun phrases"
+  },
+  {
+    keyWord: "more",
+    gapFill: "There’s _________________________ to spend some time living abroad.",
+    fullSentence: "What I’d love more than anything is to spend some time living abroad.",
+    answer: [
+      "nothing I would love more than",
+      "nothing that I would love more than",
+      "nothing would please me more than",
+      "nothing that would please me more than",
+      "nothing would give me more pleasure than",
+      "nothing that would give me more pleasure than",
+      "Nothing that I would like more than",
+      "Nothing I would like more than"
+    ],
+    tags: "C2, emphasis, cleft sentences, noun phrases, comparatives and superlatives"
+  },
+  {
+    keyWord: "her",
+    gapFill: "The manager explained that had _________________________ would have been dismissed.",
+    fullSentence: "The manager explained that the executive’s language skills was the sole reason she avoided dismissal.",
+    answer: ["it not been for her language skills she"],
+    tags: "C2, conditionals, inversion, emphasis, unreal conditionals"
+  },
+  {
+    keyWord: "suppose",
+    gapFill: "I’ve _________________________ the factory ignored safety procedures.",
+    fullSentence: "To the best of my knowledge, the factory followed all safety procedures.",
+    answer: [
+      "no reason to suppose",
+      "no grounds to suppose"
+    ],
+    tags: "C2, negation, noun phrases"
+  },
+  {
+    keyWord: "threat",
+    gapFill: "My phone says _________________________ in the mountains later.",
+    fullSentence: "My phone says there could be storms in the mountains later.",
+    answer: [
+      "there is a threat of storms",
+      "there is the threat of storms",
+      "That there is a threat of storms",
+      "That there is the threat of storms"
+    ],
+    tags: "C2, probability, noun phrases, future, idioms"
+  },
+  {
+    keyWord: "over",
+    gapFill: "It _________________________ the server.",
+    fullSentence: "The technician spent more than four hours repairing the server.",
+    answer: ["took the technician over four hours to repair"],
+    tags: "C2, time expressions, verb patterns"
+  },
+  {
+    keyWord: "anywhere",
+    gapFill: "I was _________________________ that had the book in stock.",
+    fullSentence: "I couldn’t find a single place that had the book in stock.",
+    answer: [
+      "unable to find anywhere",
+      "not able to find anywhere"
+    ],
+    tags: "C2, ability, modality, negation"
+  },
+  {
+    keyWord: "intention",
+    gapFill: "I _________________________ to technical support operators all afternoon",
+    fullSentence: "I refuse to spend the whole afternoon speaking to technical support operators.",
+    answer: [
+      "have no intention of speaking",
+      "do not have any intention of speaking",
+      "have not got any intention of speaking",
+      "have little intention of speaking"
+    ],
+    tags: "C2, verb patterns, modality, noun phrases, negation, formal"
+  },
+  {
+    keyWord: "broke",
+    gapFill: "A _________________________ the two candidates over education policy.",
+    fullSentence: "The two candidates started to debate passionately about education policy.",
+    answer: ["passionate debate broke out between"],
+    tags: "C2, phrasal verbs, noun phrases"
+  },
+  {
+    keyWord: "dislike",
+    gapFill: "Much _________________________ his leadership style.",
+    fullSentence: "I respect Jasper’s creativity, but his leadership style leaves much to be desired.",
+    answer: ["as I respect Jasper’s creativity I dislike"],
+    tags: "C2, contrast, concession, linking, fronting"
+  },
+  {
+    keyWord: "aware",
+    gapFill: "As _________________________, Claudia is settling in well abroad.",
+    fullSentence: "From what I can tell, Claudia’s settling in well abroad.",
+    answer: ["far as I am aware"],
+    tags: "C2, fixed phrase, linking"
+  },
+  {
+    keyWord: "reason",
+    gapFill: "Technical issues were given _________________________ in releasing the update.",
+    fullSentence: "Technical issues were held responsible for the delayed release of the software update.",
+    answer: [
+      "as the reason for the delay",
+      "as the reason for a delay"
+    ],
+    tags: "C2, noun phrases, causality, linking"
+  },
+  {
+    keyWord: "live",
+    gapFill: "The author’s latest novel _________________________ of the fans.",
+    fullSentence: "Fans were underwhelmed by the author’s highly anticipated latest novel.",
+    answer: [
+      "did not live up to the expectations",
+      "failed to live up to the expectations"
+    ],
+    tags: "C2, idioms, noun phrases, phrasal verbs"
+  },
+  {
+    keyWord: "took",
+    gapFill: "The company’s _________________________ surprise.",
+    fullSentence: "Everyone was surprised when the company changed its objectives",
+    answer: [
+      "change in objectives took everyone by",
+      "change of objectives took everyone by",
+      "objective change took everyone by"
+    ],
+    tags: "C2, fixed phrase, noun phrases, prepositions"
+  },
+  {
+    keyWord: "did",
+    gapFill: "Only _________________________ to finish his thesis.",
+    fullSentence: "After studying for years, Tomas was eventually able to finish his thesis.",
+    answer: [
+      "After years of studying did Tomas manage",
+      "after studying for years did Tomas manage",
+      "After years of study did Tomas manage"
+    ],
+    tags: "C2, inversion, emphasis, time expressions"
+  },
+  {
+    keyWord: "speed",
+    gapFill: "The _________________________ change could not have been foreseen.",
+    fullSentence: "Nobody could have realized how fast the temperature would change.",
+    answer: [
+      "speed at which the temperature would",
+      "speed with which the temperature would",
+      "speed of the temperature"
+    ],
+    tags: "C2, relative clauses, noun phrases, emphasis"
+  },
+  {
+    keyWord: "dark",
+    gapFill: "The teacher _________________________ about the next exam.",
+    fullSentence: "The teacher revealed absolutely nothing to his students about the next exam.",
+    answer: [
+      "kept his students in the dark",
+      "left his students in the dark"
+    ],
+    tags: "C2, idioms, prepositions"
+  },
+  {
+    keyWord: "being",
+    gapFill: "Far _________________________ behaviour, his parents seem to enjoy it.",
+    fullSentence: "His parents appear to find the way Max behaves more enjoyable than a cause for shock.",
+    answer: ["from being shocked by Max’s"],
+    tags: "C2, contrast, fixed phrase, linking"
+  },
+  {
+    keyWord: "reputed",
+    gapFill: "Mr Holt _________________________ economist.",
+    fullSentence: "Mr Holt is known for his reliability and knowledge as an economist.",
+    answer: ["is reputed to be a reliable and knowledgeable", "is reputed for being a reliable and knowledgeable"],
+    tags: "C2, passive voice, verb patterns"
+  },
+  {
+    keyWord: "hold",
+    gapFill: "Unless I _________________________ the lab results, I won’t be able to complete the analysis.",
+    fullSentence: "Without access to the lab results, I won’t be able to finish the analysis.",
+    answer: [
+      "get hold of",
+      "can get hold of",
+      "get a hold of",
+      "can get a hold of"
+    ],
+    tags: "C2, fixed phrase, conditionals, informal"
+  },
+  {
+    keyWord: "hope",
+    gapFill: "The dancers trained intensively _________________________ a spot in the national company.",
+    fullSentence: "All the dancers put in extra hours in order to get a spot in the national company.",
+    answer: [
+      "in the hope of getting",
+      "with the hope of getting"
+    ],
+    tags: "C2, noun phrases, purpose, verb patterns"
+  },
+  {
+    keyWord: "rumoured",
+    gapFill: "According to Silvia, the journalist _________________________ the story to another publication.",
+    fullSentence: "Silvia believes the journalist has sold the story to another publication.",
+    answer: ["is rumoured to have sold"],
+    tags: "C2, reporting verbs, modality, perfect, passive voice, reported speech"
+  },
+  {
+    keyWord: "of",
+    gapFill: "Noah had little _________________________ a success.",
+    fullSentence: "Noah didn’t expect that the proposal would work out.",
+    answer: [
+      "expectation of the proposal being",
+      "expectation of the proposal’s being",
+      "expectation of her proposal being",
+      "expectation of her proposal’s being"
+    ],
+    tags: "C2, noun phrases, modality, verb patterns, formal"
+  },
+  {
+    keyWord: "exception",
+    gapFill: "With _________________________, Henry is an expert in every department.",
+    fullSentence: "Henry knows every department inside out, apart from logistics.",
+    answer: ["the exception of logistics"],
+    tags: "C2, exceptions, prepositions, noun phrases"
+  },
+  {
+    keyWord: "on",
+    gapFill: "What Zoe _________________________ running first thing in the morning.",
+    fullSentence: "Zoe really loves her early morning run.",
+    answer: [
+      "is keen on doing is",
+      "is really keen on doing is",
+      "is keen on is",
+      "is really keen on is"
+    ],
+    tags: "C2, verb patterns, emphasis, cleft sentences"
+  },
+  {
+    keyWord: "bears",
+    gapFill: "This updated tablet _________________________ last year’s model.",
+    fullSentence: "The updated tablet is completely different from last year’s version.",
+    answer: [
+      "bears no resemblance to",
+      "bears little resemblance to",
+      "bears no similarity to",
+      "bears little similarity to"
+    ],
+    tags: "C2, emphasis, noun phrases, comparatives and superlatives, formal"
+  },
+  {
+    keyWord: "reason",
+    gapFill: "Maria’s _________________________ to work on her accent.",
+    fullSentence: "Maria visited New York primarily to improve her accent.",
+    answer: [
+      "reason for visiting New York was",
+      "main reason for visiting New York was",
+      "primary reason for visiting New York was"
+    ],
+    tags: "C2, noun phrases, purpose, linking"
+  },
+  {
+    keyWord: "are",
+    gapFill: "Employees _________________________ restructuring plans by the board.",
+    fullSentence: "The board plans to warn employees about restructuring plans.",
+    answer: [
+      "are to be warned about",
+      "are to be warned regarding",
+      "are to be warned concerning",
+      "are to be warned over",
+      "are expected to be warned about",
+      "are set to be warned about"
+    ],
+    tags: "C2, passive voice, modality, formal, future"
+  },
+  {
+    keyWord: "escaping",
+    gapFill: "There is  _________________________ we’ll have to work faster to meet the deadline.",
+    fullSentence: "It cannot be denied that we’ll need to speed things up if we want to meet the deadline.",
+    answer: [
+      "no escaping the fact that",
+      "no escaping the fact",
+      "no way of escaping the fact",
+      "no way of escaping the fact that",
+      "Little escaping the fact that",
+      "Little escaping that fact"
+    ],
+    tags: "C2, fixed phrase, emphasis, modality, probability"
   }
 ];
 
